@@ -27,7 +27,7 @@ public class Mainclass {
 			
 			MemberVO vo = new MemberVO();
 			
-			vo.setId(1);
+			vo.setId(3);
 			vo.setName("조조");
 			vo.setPhone("010-1111-2222");
 			vo.setAddress("경기도 수원시");
