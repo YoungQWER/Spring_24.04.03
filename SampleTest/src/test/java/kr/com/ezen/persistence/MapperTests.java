@@ -64,6 +64,15 @@ public class MapperTests {
 		log.info(">>>>>> " + vo);
 	}
 	
+	@Test
+	public void selectAllList() {
+		memberMapper.selectAllList()
+			.forEach(vo-> log.info(vo));
+	}
+	
+	
+	
+	
 
 }
 	
