@@ -2,11 +2,31 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.com.ezen.Mapperinterface">
-
+<mapper namespace="kr.com.ezen.MapperInterface">
+  
 	<insert id="insertMember">
-	  insert into member (id, name, phone, address)
-	  values (#{id},#{name},#{phone},#{address})
+		insert into member(id, name, phone, address)
+		values (#{id},#{name},#{phone},#{address})
 	</insert>
+  
+	<update id="updateMember">
+	  update member set
+	    name = #{name},
+	    phone = #{phone},
+	    address = #{address}	    
+	    where id = #{id}
+	</update>
+  
+	<delete id="deleteMember">
+		delete from member where id = #{id}
+	</delete>
+  
+	<select id="selectMemberOne" resultType="kr.com.ezen.MemberVO">
+  		SELECT * FROM member WHERE ID = #{id}
+	</select>
+
+	<select id="selectMemeberList" resultType="kr.com.ezen.MemberVO">
+  		SELECT * FROM member order by id desc
+	</select>
   
 </mapper>
