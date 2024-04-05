@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="SampleTest"/>
-<aop-project name="SampleTest_self"/>
+<aop-project name="SampleTest_SelfStudy"/>
 <aop-project name="MybatisTest"/>
 </aop-reference-model>
