@@ -33,7 +33,7 @@ public class MemberServiceTests {
 	
 	@Test
 	public void testList() {
-		memberService.list()
+		memberService.list()	
 			.forEach(vo -> log.info(vo));
 	}
 
