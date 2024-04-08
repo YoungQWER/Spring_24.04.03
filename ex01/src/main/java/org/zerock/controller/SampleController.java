@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.SampleDTO;
 import org.zerock.domain.TodoDTO;
@@ -174,8 +176,19 @@ public class SampleController {
 	}
 	
 	
+	@GetMapping("/exUpload")  //localhost:8181/sample/exUpload    --> (void) /WEB-INF/views/sample/exUpload.jsp
+	public void exUpload() {
+		log.info("exUpload..........");
+	}
 	
-	
+	@PostMapping("/ExuploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		files.forEach(file -> {
+			log.info("-------------------------");
+			log.info("name : " + file.getOriginalFilename());
+			log.info("size : " + file.getSize());
+		});
+	}
 	
 	
 	
