@@ -174,8 +174,7 @@ public class SampleController {
 		
 		return new ResponseEntity<String>(jsonStr, headers, HttpStatus.ACCEPTED);
 	}
-	
-	
+		
 	@GetMapping("/exUpload")  //localhost:8181/sample/exUpload    --> (void) /WEB-INF/views/sample/exUpload.jsp
 	public void exUpload() {
 		log.info("exUpload..........");
@@ -189,9 +188,5 @@ public class SampleController {
 			log.info("size : " + file.getSize());
 		});
 	}
-	
-	
-	
-	
-	
+		
 }
