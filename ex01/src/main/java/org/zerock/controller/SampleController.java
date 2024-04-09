@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,7 +126,7 @@ public class SampleController {
 	}
 
 	@GetMapping("/ex06")
-	@ResponseBody
+	@ResponseBody    //java객체를 >> Json으로 변환해서 전달
 	public SampleDTO ex06() {
 		SampleDTO sampleDTO = new SampleDTO();
 
@@ -135,6 +136,15 @@ public class SampleController {
 		return sampleDTO;
 	}
 
+	@GetMapping("/ex066")	//Json 값을 java 객체로 변환하여 dto 전달
+	public String ex066(@RequestBody SampleDTO dto) {
+		log.info("----------ex066");
+		log.info(dto.getName());
+		log.info(dto.getAge());
+		log.info(dto);
+		
+		return "ex066";
+	}
 	
 //	  @GetMapping("/ex07") public SampleDTO ex07() { SampleDTO sampleDTO = new
 //	  SampleDTO();
@@ -188,5 +198,9 @@ public class SampleController {
 			log.info("size : " + file.getSize());
 		});
 	}
+	
+	
+	
+
 		
 }

@@ -5,4 +5,6 @@
 <aop-project name="SampleTest2"/>
 <aop-project name="SampleTest_SelfStudy_Test"/>
 <aop-project name="MybatisTest"/>
+<aop-project name="ex00"/>
+<aop-project name="ex01"/>
 </aop-reference-model>
