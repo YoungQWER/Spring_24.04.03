@@ -14,7 +14,6 @@ import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @Log4j
