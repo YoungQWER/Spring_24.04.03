@@ -14,49 +14,62 @@ import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @Log4j
 @RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
-	
-	private final BoardService boardService;
 
+	private final BoardService boardService;
+	
+	
+	
 	@GetMapping("/list")
-	public void list(Model model){
-		log.info("list.........");
+	public void list(Model model){   
+		log.info("list........");
 		
-		model.addAttribute("list", boardService.getList());		// vires/board/list.jsp
+		model.addAttribute("list", boardService.getList());  //views/board/list.jsp
 	}
 	
-	@PostMapping("/regiser")
+	
+	@GetMapping("/register")
+	public void register() {
+		
+	}
+	
+	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register......." + board);
 		boardService.register(board);
 		
 		rttr.addFlashAttribute("result", board.getBno());
-		return "redirect:/board/list";		// vires/board/list.jsp
+		
+		return "redirect:/board/list";   //views/board/list.jsp
 	}
-
+	
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model) {
-		log.info("get......." + bno);
-
-		model.addAttribute("board", boardService.get(bno));   // vires/board/get.jsp
+		log.info("get......" + bno);
+		
+		model.addAttribute("board", boardService.get(bno)); // views/board/get.jsp
+		
 	}
 	
 	@PostMapping("/modify")
 	public String modify(BoardVO board, RedirectAttributes rttr) {
-		log.info("modify......." + board);
-
-		if(boardService.modify(board)) {	//board 입력받아서 수정 성공하면 true, 실패하면 false
+		
+		log.info("modify......" + board);
+		
+		if(boardService.modify(board)) {  //board입력받아서 수정 성공하면 true, 실패하면 false
 			rttr.addFlashAttribute("result", "success");
 		}
 		
 		return "redirect:/board/list";
+		
 	}
-
+	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno")Long bno, RedirectAttributes rttr) {
 		log.info("remove........" + bno);
@@ -64,8 +77,7 @@ public class BoardController {
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		
 		return "redirect:/board/list";
 	}
-	
-	
 }
