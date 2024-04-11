@@ -7,4 +7,6 @@
 <aop-project name="MybatisTest"/>
 <aop-project name="ex00"/>
 <aop-project name="ex01"/>
+<aop-project name="ex02"/>
+<aop-project name="ex01_SelfStudy"/>
 </aop-reference-model>
