@@ -34,7 +34,7 @@
                                 	<c:forEach var="board" items="${list}">
 	                                    <tr class="odd gradeX">
 	                                        <td>${board.bno}</td>
-	                                        <td>${board.title}</td>
+	                                        <td><a href='/board/get?bno=${board.bno}'/> ${board.title}</td>
 	                                        <td>${board.writer}</td>
 	                                        <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/></td>
 	                                        <td><fmt:formatDate value="${board.updateDate}" pattern="yyyy-MM-dd"/></td>
@@ -43,6 +43,29 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                            
+	         	      <!-- 모달창 추가 -->
+					  <div class="modal" id="myModal">
+					    <div class="modal-dialog">
+					      <div class="modal-content">
+					      
+					        <!-- Modal Header -->
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
+					        </div>
+					        <!-- Modal body -->
+					        <div class="modal-body">
+					          처리가 완료되었습니다.
+					        </div>
+					        <!-- Modal footer -->
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					    </div>
+					  </div>   <!-- /모달창 추가 -->     
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -54,16 +77,45 @@
 
 <script>
 	$(document).ready(function(){
-		var result = ${result}
 		
-		console.log(result)
+		var result = '<c:out value="${result}" />';
+		
+		checkModal(result);
+		
+		history.replaceState({}, null, null);
+		
+		//모달창
+		function checkModal(result){
+	 		if(result === "" || history.state){ 
+				return;
+			}
+			if(parseInt(result)>0){
+				$(".modal-body").html("게시글 " + parseInt(result)+"번이 등록되었습니다.");
+			}
+			$("#myModal").modal("show");
+		}
 		
 		//register 호출
 		$("#regBtn").on("click", function(){
-			self.location = "/board/register"
+			self.location = "/board/register";
 		});
-	})
+		
+		/* document.getElementById("regBtn").addEventListener("click",function(){
+			window.location.href = "/board/register";
+		}) */
+		
+	});
 </script>
+
+
+
+
+
+
+
+
+
+
 
        
 <%@ include file="../includes/footer.jsp" %>

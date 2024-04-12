@@ -49,9 +49,9 @@ public class BoardController {
 		return "redirect:/board/list";   //views/board/list.jsp
 	}
 	
-	@GetMapping("/get")
+	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
-		log.info("get......" + bno);
+		log.info("get + modify....." + bno);
 		
 		model.addAttribute("board", boardService.get(bno)); // views/board/get.jsp
 		

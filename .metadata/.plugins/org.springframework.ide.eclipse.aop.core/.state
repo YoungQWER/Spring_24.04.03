@@ -2,6 +2,7 @@
 <aop-reference-model>
 <aop-project name="SampleTest"/>
 <aop-project name="SampleTest_SelfStudy_Service"/>
+<aop-project name="ex02_SelfStudy"/>
 <aop-project name="SampleTest2"/>
 <aop-project name="SampleTest_SelfStudy_Test"/>
 <aop-project name="MybatisTest"/>
