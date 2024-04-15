@@ -1,7 +1,5 @@
 package org.zerock.controller;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +12,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.WebApplicationContext;
-import org.zerock.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -98,6 +95,15 @@ public class BoardControllerTests {
 		log.info(viewName);
 	}
 	
+	@Test
+	public void testListPagging() throws Exception {
+		ModelMap modelMap = mockMvc.perform (MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "1")
+				.param("amount", "10"))
+				.andReturn().getModelAndView().getModelMap();
+		
+				log.info(modelMap);
+	}
 	
 	
 	

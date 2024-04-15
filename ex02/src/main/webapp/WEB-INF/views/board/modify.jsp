@@ -18,6 +18,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
 	                      <form role="form" action="/board/modify" method="post">
+	                      		<input type="hidden" name='pageNum' value= "${cri.pageNum}" >
+	                       		<input type="hidden" name='amount' value= "${cri.amount}" >
+		                    
 		                       	<div class="form-group">
 		                        	<label>Bno</label>
 		                        	<input name="bno" class="form-control" value="${board.bno}" readonly="readonly">
@@ -68,8 +71,22 @@ $(document).ready(function(){
 		if(operation === 'remove'){
 			formObj.attr("action", "/board/remove");
 		}else if(operation === 'list'){
+			 // 기존의 pageNum과 amount 값을 유지하면서 list 요청을 보냄
 			formObj.attr("action", "/board/list").attr("method","get");
-			formObj.empty();
+	
+			var pageNumTag = $("input[name='pageNum']").clone();
+			var amountTag = $("input[name='pageNum']").clone();
+						 
+ 			formObj.empty();
+
+ 			formObj.append(pageNumTag);
+ 			formObj.append(amountTag);
+ 			
+			/* 
+			formObj.append('<input type="hidden" name="pageNum" value="' + $('[name="pageNum"]').val() + '">');
+            formObj.append('<input type="hidden" name="amount" value="' + $('[name="amount"]').val() + '">'); 
+            */
+            
 		}
 		formObj.submit();
 	})

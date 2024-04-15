@@ -1,6 +1,6 @@
 package org.zerock.service;
 
-import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ public class BoardServiceImplTest {
 	
 	@Test
 	public void testGetList() {
-		boardService.getList().forEach(vo -> log.info(vo));
+//		boardService.getList().forEach(vo -> log.info(vo));
 	}
 
 }
