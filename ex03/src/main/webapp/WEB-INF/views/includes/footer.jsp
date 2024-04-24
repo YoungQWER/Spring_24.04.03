@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
-
-
-</div>
+  </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
+   <!--  <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -23,7 +20,7 @@
     <script src="/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+s
     <!-- Custom Theme JavaScript -->
     <script src="/resources/dist/js/sb-admin-2.js"></script>
 
@@ -35,15 +32,14 @@
         });
         
         $(".sidebar-nav")
-        .attr("class", "sidebar-nav navbar-collapse collapse")
-        .attr("aria-expanded", 'false')
-        .attr("sytle", "height:1px")
+    	.attr("class", "sidebar-nav navbar-collapse collapse")
+    	.attr("aria-expanded", 'false')
+    	.attr("sytle", "height:1px")
         
-        #("sidebar-nav"
-        		.attr)
     });
     </script>
 
 </body>
 
 </html>
+    

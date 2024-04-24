@@ -60,11 +60,11 @@
 	<section name="JavaSearchPage">
 		<item key="CASE_SENSITIVE" value="false"/>
 		<item key="INCLUDE_MASK" value="15"/>
-		<item key="HISTORY_SIZE" value="3"/>
+		<item key="HISTORY_SIZE" value="4"/>
 		<section name="HISTORY0">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
-			<item key="pattern" value="vendor/bootstrap/js/bootstrap.min.js"/>
+			<item key="pattern" value="히든으로 bno로 modify에 값을 보내면서 이동"/>
 			<item key="limitTo" value="3"/>
 			<item key="matchLocations" value="0"/>
 			<item key="javaElement" value=""/>
@@ -76,6 +76,18 @@
 		<section name="HISTORY1">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
+			<item key="pattern" value="vendor/bootstrap/js/bootstrap.min.js"/>
+			<item key="limitTo" value="3"/>
+			<item key="matchLocations" value="0"/>
+			<item key="javaElement" value=""/>
+			<item key="isCaseSensitive" value="false"/>
+			<item key="includeMask" value="15"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY2">
+			<item key="searchFor" value="0"/>
+			<item key="scope" value="0"/>
 			<item key="pattern" value="VO"/>
 			<item key="limitTo" value="2"/>
 			<item key="matchLocations" value="0"/>
@@ -85,7 +97,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY2">
+		<section name="HISTORY3">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="realEnd"/>

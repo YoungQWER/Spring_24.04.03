@@ -78,4 +78,10 @@ public class ReplyMapperTest {
 		List<ReplyVO> list =  replyMapper.getListWithPaging(cri, bnoArr[0]);
 		list.forEach(reply-> log.info(reply));
 	}
+	
+	@Test
+	public void getCountByBno() {
+		
+		log.info(replyMapper.getCountByBno(2097152L));
+	}
 }

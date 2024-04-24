@@ -2,15 +2,16 @@
 <aop-reference-model>
 <aop-project name="ex03_SelfStudy"/>
 <aop-project name="ex02_SelfStudy"/>
-<aop-project name="ex01"/>
 <aop-project name="MybatisTest"/>
+<aop-project name="ex01"/>
 <aop-project name="ex03"/>
+<aop-project name="Test"/>
 <aop-project name="ex01_SelfStudy"/>
 <aop-project name="ex02_1"/>
 <aop-project name="SampleTest"/>
 <aop-project name="SampleTest_SelfStudy_Service"/>
 <aop-project name="SampleTest2"/>
 <aop-project name="SampleTest_SelfStudy_Test"/>
-<aop-project name="ex02"/>
 <aop-project name="ex00"/>
+<aop-project name="ex02"/>
 </aop-reference-model>
