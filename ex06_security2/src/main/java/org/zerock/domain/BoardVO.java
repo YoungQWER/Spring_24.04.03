@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /*
  * 
@@ -23,6 +24,7 @@ create table tbl_board(
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class BoardVO {
 	private Long bno;
 	private String title;
@@ -34,5 +36,24 @@ public class BoardVO {
 	private Date updateDate;
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

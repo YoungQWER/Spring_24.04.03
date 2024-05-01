@@ -20,6 +20,7 @@ import org.zerock.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @RestController
 @RequestMapping("/reply/")
@@ -32,7 +33,6 @@ public class ReplyController {
 	@PostMapping(value = "/new", consumes = "application/json",
 			produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyVO reply){
-				//ㄴ HTTP에서 응답을 나타내는 클래스
 		
 		log.info("create......." + reply);
 		
@@ -40,18 +40,20 @@ public class ReplyController {
 		
 		return insertCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : 
 								  new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}																//500 에러
+	}
 	
+	//localhost:8181/reply/207
 	@GetMapping(value = "/{rno}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno){
-											//ㄴ 매핑
+		
 		log.info("get........." + rno);
 		
 		ReplyVO vo = replyService.get(rno);
 		
-		return new ResponseEntity<ReplyVO>(replyService.get(rno), HttpStatus.OK);
+		return new ResponseEntity<ReplyVO>(vo, HttpStatus.OK);
 	}
 
+	//localhost:8181/reply/12
 	@DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> delete(@PathVariable("rno") Long rno){
 		
@@ -61,34 +63,39 @@ public class ReplyController {
 				? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
-	//localhost:8181/reply/95 + {"reply":" 수정내용이 와야함"}
-	@PutMapping(value = "/{rno}", consumes = "application/json" , produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> update(@PathVariable("rno") Long rno, @RequestBody ReplyVO reply){
+	
+	//localhost:8181/reply/13  +  { "reply": "수정내용이와야됨" }
+	@PutMapping(value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> update(@PathVariable("rno") Long rno, @RequestBody ReplyVO reply ){
+		log.info("rno........." + rno);
+		log.info("reply......" + reply);
 		
-		log.info("rno......" + rno);
-		log.info("reply......." + reply);
-		
-		//rno를 넣어준다
 		reply.setRno(rno);
 		
-		return replyService.modify(reply) == 1 ?
+		return replyService.modify(reply) == 1 ? 
 				new ResponseEntity<String>("success", HttpStatus.OK):
 				new ResponseEntity<String>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	//localhost:8181/reply/pages/100/1 -->
+	@GetMapping(value ="/pages/{bno}/{page}" , produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ReplyPageDTO> getList(
 			@PathVariable("bno") Long bno,
 			@PathVariable("page") int page
 			){
-		log.info("getList......" + bno + ", " + page);
+		log.info("getList........." + bno + ", " + page);
 		
-		Criteria crt = new Criteria(page, 10);
+		Criteria cri = new Criteria(page, 10);
 		
-		ReplyPageDTO result = replyService.getList(crt, bno);
+		ReplyPageDTO result = replyService.getList(cri, bno);		
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
+		
 	}
-	
 }
+
+
+
+
+
+

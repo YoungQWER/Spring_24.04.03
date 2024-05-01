@@ -13,7 +13,7 @@
 	
 	<form action="/login" method="post">
 		<div>
-			<input type="text" name="username" value="admin">
+			<input type="text" name="username" value="user99">
 		</div>
 		<div>
 			<input type="password" name="password" value="1111">
@@ -22,7 +22,7 @@
 			<input type="submit">
 		</div>
 		
-	<%-- 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 		
 	</form>
 </body>

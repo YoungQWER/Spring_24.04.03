@@ -33,7 +33,7 @@
 	                        <tr class="odd gradeX">
 	                            <td>${board.bno }</td>
 	                            <td>
-	                            	<a class="move" href='${board.bno}'/>${board.title } <b>[${board.replycnt}]</b></a>
+	                            	<a class="move" href='${board.bno}'/> ${board.title } <b>[${board.replycnt}]</b>
 	                            </td>
 	                            <td>${board.writer }</td>
 	                            <td><fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd"  /></td>
@@ -207,9 +207,27 @@
  
  
  
- 	
- 
- 
  
       
 <%@include file="../includes/footer.jsp" %>      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

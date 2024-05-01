@@ -9,21 +9,20 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @RequestMapping("/sample")
-public class SampleController2 {
-	
+public class SampleContrller2 {
+
 	@GetMapping("/all")
 	public void doAll() {
-		log.info("all................");
+		log.info("all..................");
 	}
-
+	
 	@GetMapping("/member")
 	public void doMember() {
-		log.info("member................");
+		log.info("member..................");
 	}
-	
+
 	@GetMapping("/admin")
 	public void doAdmin() {
-		log.info("admin................");
+		log.info("admin..................");
 	}
-	
 }

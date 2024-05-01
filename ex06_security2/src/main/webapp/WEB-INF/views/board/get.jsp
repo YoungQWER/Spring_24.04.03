@@ -276,7 +276,7 @@ $(document).ready(function(){
 		replyService.update(reply, function(result){
 			alert(result);
 			modal.modal("hide")
-			showList(1)
+			showList(pageNum)
 		})
 	})  //End 댓글 수정
 
@@ -290,7 +290,7 @@ $(document).ready(function(){
 		replyService.remove(rno, function(result){
 			alert(result);
 			modal.modal("hide")
-			showList(1)
+			showList(pageNum)
 		})
 	})  //End 댓글 삭제
 	
@@ -333,8 +333,17 @@ $(document).ready(function(){
 		str += "</ul>"
 		
 		replyPageFooter.html(str)
-		
 	}
+	
+	replyPageFooter.on("click", "li a", function(e){
+		e.preventDefault();	
+		
+		var targetPageNum = $(this).attr("href")
+		
+		pageNum = targetPageNum
+		
+		showList(pageNum);
+	})
 	
 	
 	
@@ -395,7 +404,6 @@ $(document).ready(function(){
 	); */
 	
 	
-	  
 	
 });
 </script>

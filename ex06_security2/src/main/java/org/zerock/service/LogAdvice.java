@@ -8,13 +8,11 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
-import lombok.ToString;
 import lombok.extern.log4j.Log4j;
 
 @Aspect   // 3
 @Service
 @Log4j
-@ToString
 public class LogAdvice implements Advice{
 
 	
@@ -22,12 +20,12 @@ public class LogAdvice implements Advice{
 	public void allPointCut() {};
 	
 	@Around("allPointCut()")  //2
-	public Object logAdvice(ProceedingJoinPoint pjp) throws Throwable{
-
+	public Object logAdvice(ProceedingJoinPoint pjp)  throws Throwable{
+		
 //		String method = pjp.getSignature().getName();
-//		Object[] arg = pjp.getArgs();
+//		Object[] arg  = pjp.getArgs();
 //		
-//		log.info("---------------------------------");
+//		log.info("--------------------------------------------------");
 //		log.info("method : " + method);
 //		log.info("arg : " + arg);
 //		
@@ -36,17 +34,17 @@ public class LogAdvice implements Advice{
 //		watch.start();
 //		Object obj = pjp.proceed();
 //		watch.stop();
-//
 //		
 //		log.info(method + "() 메소드 수행에 걸린 시간 : " + watch.getTotalTimeMillis());
 //		log.info(obj);
-//		log.info("---------------------------------");
+//		log.info("--------------------------------------------------");
 		
-		String mehod = pjp.getSignature().getName();
-		log.info(mehod + "......................");
+		String method = pjp.getSignature().getName();
+		log.info(method + "........................");
 		Object obj = pjp.proceed();
 		
 		return obj;
+		
 	}
 
 	@Override

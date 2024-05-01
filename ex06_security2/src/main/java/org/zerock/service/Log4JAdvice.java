@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j;
 @Aspect
 public class Log4JAdvice implements Advice{
 	
-	@Pointcut("execution(* org.zerock.service.ReplyServiceImpl.*(..) )   ")  // 1
+	@Pointcut("execution(* org.zerock.service.ReplyServiceImpl.remove*(..) )   ")  // 1
 	public void allPointCut() {};
 	
 	@After("allPointCut()")

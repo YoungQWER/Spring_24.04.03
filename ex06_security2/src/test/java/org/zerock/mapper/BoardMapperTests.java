@@ -1,5 +1,8 @@
 package org.zerock.mapper;
 
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +28,8 @@ public class BoardMapperTests {
 	@Test
 	public void testGetList() {
 		
-		boardMapper.getList().forEach(vo -> log.info(vo));
+		Criteria cri = new Criteria();
+		boardMapper.getListWithPaging(cri).forEach(vo -> log.info(vo));
 	}
 	
 	@Test
@@ -90,20 +94,21 @@ public class BoardMapperTests {
 	@Test
 	public void testGetListWithPageing() {
 		
-		Criteria cri = new Criteria(1,10);
+		Criteria cri = new Criteria(3,10);
 		
  		List<BoardVO> list = boardMapper.getListWithPaging(cri);
  		
  		list.forEach(vo->log.info(vo));
 	}
 
+	
 	@Test
-	public void testSearch() {
+	public void aaaa() {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("T", "수정");
 		map.put("C", "제목");
-		map.put("W", "저자");
+		map.put("W", "내용");
 		
 		Map<String, Map<String, String>> outer = new HashMap<>();
 		
@@ -119,13 +124,12 @@ public class BoardMapperTests {
 		Criteria cri = new Criteria();
 		
 		cri.setType("");
-		cri.setKeyword("수정");
+		cri.setKeyword("내용");
 		
 		List<BoardVO> list = boardMapper.getListWithPaging(cri);
 		
 		log.info(list);
 	}
-	
 }
 
 

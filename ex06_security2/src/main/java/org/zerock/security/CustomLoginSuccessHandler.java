@@ -1,7 +1,5 @@
 package org.zerock.security;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,25 +20,26 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication auth) throws IOException, ServletException {
 		
-		log.warn("Login Success");
+		log.warn("Login Secucess");
 		
 		List<String> roleNames = new ArrayList<String>();
-		log.info("------------------------------------");
+		log.info("---------------------------------------");
 		log.info(auth.getName());
 		log.info(auth.getPrincipal());
 		log.info(auth.getAuthorities());
-
-		auth.getAuthorities().forEach(authority-> {
+		
+		auth.getAuthorities().forEach( authority-> {
 			roleNames.add(authority.getAuthority());
 		});
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/sample/admin");
-			return;
-		}else if(roleNames.contains("ROLE_MEMBER")) {
+			return ;
+		}else if(roleNames.contains("ROLE_MEMBER")){
 			response.sendRedirect("/sample/member");
-			return;
+			return ;
 		}
+		
 		response.sendRedirect("/");
 	}
 

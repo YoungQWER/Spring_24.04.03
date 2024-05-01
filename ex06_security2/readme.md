@@ -25,12 +25,11 @@ select seq_board.currval from dual;  -- 시퀀스 조회
 
 
 
-
 create table tbl_reply(
-    rno number(10,0),           -- 기본키
-    bno number(10,0) not null,  -- 외래키
+    rno number(10,0),            -- 기본키
+    bno number(10,0) not null,   --외래키
     reply varchar2(1000) not null,
-    replyer varchar(50) not null,
+    replyer varchar2(50) not null,
     replyDate date default sysdate,
     updateDate date default sysdate
 );
@@ -39,5 +38,5 @@ create SEQUENCE seq_reply;
 
 alter table tbl_reply add CONSTRAINT pk_reply primary key(rno);
 
-alter table tbl_reply add CONSTRAINT fk_reply_board
+alter table tbl_reply add CONSTRAINT fk_reply_board 
 FOREIGN key(bno) REFERENCES tbl_board(bno);

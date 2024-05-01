@@ -19,11 +19,12 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
+				
 					<input type="hidden" name="pageNum" value='${cri.pageNum}'>
-            		<input type="hidden" name="amount" value='${cri.amount}'>
-            		<input type="hidden" name="type" value='${cri.type}'>
-					<input type="hidden" name="keyword" value='${cri.keyword}'>
-            		
+           			<input type="hidden" name="amount" value='${cri.amount}'>
+           			<input type="hidden" name="type" value=${cri.type}>
+					<input type="hidden" name="keyword" value=${cri.keyword}>
+           			
 	           		<div class="form-group">
 	            		<label>Bno</label>
 	            		<input class="form-control" name="bno" value="${board.bno}" readonly="readonly">
@@ -45,10 +46,10 @@
 	            		<input class="form-control" name="writer" value="${board.writer}" >
 	           		</div>
 	           		
-	           		<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>          	
-	           		<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>          	
-	           		<button type="submit" data-oper='list' class="btn btn-info">List</button>          	
-				</form>            		
+	           		<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
+	           		<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+	           		<button type="submit" data-oper='list' class="btn btn-info">List</button>
+            	</form>	
             </div>
             <!-- /.panel-body -->
         </div>
@@ -58,46 +59,39 @@
 </div>
 <!-- /.row -->
 
-
-
 <script>
-	$(document).ready(function(){
-		
-		let formObj = $("form");
-		
-		$('button').on("click", function(e){
-			e.preventDefault();    //<form role="form" action="/board/modify" method="post"> 이동 중지
-			
-			let operation = $(this).data("oper");
-			
-			if(operation === 'remove'){
-				formObj.attr("action", "/board/remove");
-			}else if(operation === 'list'){
-				formObj.attr("action", "/board/list").attr("method", "get");
-
-				let pageNumTag = $("input[name='pageNum']").clone();
-				let amountTag = $("input[name='amount']").clone();
-				let typeTag = $("input[name='type']").clone();
-				let keywordTag = $("input[name='keyword']").clone();
-				
-				console.log(pageNumTag);
-				formObj.empty();
-
-				formObj.append(pageNumTag);
-				formObj.append(amountTag);
-				formObj.append(typeTag);
-				formObj.append(keywordTag);
-				
-			}
-			formObj.submit();
-		});
-	});
-</script>
-
-
-
-
-
+ 	$(document).ready(function(){
+ 		
+ 		let formObj = $("form");
+ 		
+ 		$('button').on("click", function(e){
+ 			e.preventDefault();  //<form role="form" action="/board/modify" method="post"> 이동 중지
+ 			
+ 			let operation = $(this).data("oper");
+ 			
+ 			if(operation === 'remove'){
+ 				formObj.attr("action", "/board/remove"); 				
+ 			}else if(operation === 'list'){
+ 				formObj.attr("action", "/board/list").attr("method","get");
+ 				
+ 				let pageNumTag = $("input[name='pageNum']").clone();
+ 				let amountTag = $("input[name='amount']").clone();
+ 				let typeTag = $("input[name='type']").clone();
+ 				let keywordTag = $("input[name='keyword']").clone();
+ 			
+ 				formObj.empty();
+ 				
+ 				formObj.append(pageNumTag);
+ 				formObj.append(amountTag);
+ 				formObj.append(typeTag);
+ 				formObj.append(keywordTag);
+ 			
+ 			}
+ 			formObj.submit();
+ 		});
+ 		
+ 	});
+ </script>
 
 
       

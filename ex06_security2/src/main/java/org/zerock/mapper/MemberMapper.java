@@ -4,10 +4,11 @@ import org.zerock.domain.AuthVO;
 import org.zerock.domain.MemberVO;
 
 public interface MemberMapper {
-
-	void insert(MemberVO memberVO);
 	
-	void insertAuth(AuthVO auto);
+	public void insert(MemberVO memberVO);
+	
+	public void insertAuth(AuthVO auth);
 	
 	public MemberVO read(String userid);
+	
 }

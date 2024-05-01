@@ -36,15 +36,16 @@ public class PasswordTest {
 	private MemberMapper memberMapper;
 	
 	
-	@Test	//100개 아이디 생성
+	@Test
 	public void testInsertMember() {
 		
 		for(int i=1; i<=100; i++) {
+			
 			MemberVO memberVO = new MemberVO();
 			
 			memberVO.setUserid("user"+i);
 			memberVO.setUserpw(pwEncoder.encode("1111"));
-			memberVO.setUsername("USER"+i);
+			memberVO.setName("USER"+i);
 			
 			List<AuthVO> authList = new ArrayList<AuthVO>();
 			
@@ -87,12 +88,12 @@ public class PasswordTest {
 		
 	}
 	
+	
 	@Test
 	public void testRead() {
 		MemberVO vo = memberMapper.read("user99");
 		log.info(vo);
 	}
-	
 	
 	
 }

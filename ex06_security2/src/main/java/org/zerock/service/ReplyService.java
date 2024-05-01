@@ -15,5 +15,4 @@ public interface ReplyService {
 	
 	public ReplyPageDTO getList(Criteria cri, Long bno);
 
-	
 }

@@ -4,35 +4,66 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="org.zerock.mapper.MemberMapper">
-	
-	<insert id="insert">
-		insert into tbl_member(userid, userpw, username) 
-		values(#{userid}, #{userpw}, #{username} )
-	</insert>
-
-	<insert id="insertAuth">
-		insert into tbl_member_auth(userid, auth) 
-		values(#{userid}, #{auth})
-	</insert>
-	
-	<resultMap type="" id="">
-		<id property="useriid" column=""userid"/>
-		<result property="useriid" column=""userid"/>
-		<result property="useriid" column=""userid"/>
-		<result property="useriid" column=""userid"/>
-		<result property="useriid" column=""userid"/>
-		<result property="useriid" column=""userid"/>
-		
-	</resultMap>
-
-
-	<insert id="read" resulttype="org.zerock.domain.memberVO">
-		select 
-			m.userid, userpw, username, enable, 
-		from 
-		tbl_member m left join tbl_member_auth a
-		on m.userid = a.userid
-		where a.userid = '#{userid}';
-	</insert>
-
+  
+  <insert id="insert">
+  	insert into tbl_member(userid, userpw, username)   
+	values( #{userid}, #{userpw}, #{username} )
+  </insert>
+  
+  <insert id="insertAuth">
+  	insert into tbl_member_auth(userid, auth) 
+  	values(#{userid}, #{auth})
+  </insert>
+  
+  
+  <resultMap type="org.zerock.domain.MemberVO" id="memberMap">
+  	
+  	<id property="userid" column="userid" />
+  	
+  	<result property="userid" column="userid"/>
+  	<result property="userpw" column="userpw"/>
+  	<result property="name" column="username"/>
+  	<result property="regDate" column="regdate"/>
+  	<result property="updateDate" column="updatedate"/>
+  	<result property="enabled" column="enabled"/>
+  	
+  	<collection property="authList" resultMap="authMap"></collection>
+  </resultMap>
+  
+  <resultMap type="org.zerock.domain.AuthVO" id="authMap">
+  	<result property="userid" column="userid"/>
+  	<result property="auth" column="auth"/>
+  </resultMap>
+  
+  <select id="read" resultMap="memberMap">
+  	select 
+		m.userid, userpw, username, enabled, regdate, updatedate, auth
+	from 
+	tbl_member m left join tbl_member_auth a
+	on m.userid = a.userid
+	where m.userid = #{userid}
+  </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
