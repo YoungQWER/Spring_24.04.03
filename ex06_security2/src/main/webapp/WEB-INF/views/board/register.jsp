@@ -31,7 +31,8 @@
             		
             		<div class="form-group">
 	            		<label>Writer</label>
-	            		<input class="form-control" name="writer">
+	            		<input class="form-control" name="writer" readonly="readonly" 
+	            		value='<sec:authentication property="principal.username"/>'>
             		</div>
             		
             		<button type="submit" class="btn btn-primary">Submit Button</button>

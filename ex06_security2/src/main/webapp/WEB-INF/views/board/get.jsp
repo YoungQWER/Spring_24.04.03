@@ -41,7 +41,15 @@
             		<input class="form-control" name="writer" value="${board.writer}" readonly="readonly">
            		</div>
            		
-           		<button data-oper='modify' class="btn btn-primary" >Modify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           		<!--본인만 수정할 수 있게 -->
+           		<sec:authentication property="principal" var="pinfo"/>
+           		
+           		<sec:authorize access="isAuthenticated()">
+           			<c:if test="${pinfo.username eq board.writer}">
+           				<button data-oper='modify' class="btn btn-primary" >Modify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           			</c:if>
+           		</sec:authorize>
+				<!-- 본인만 수정할 수 있게 End -->
            	
            		<button data-oper='list' class="btn btn-warning">List</button>
            		
@@ -70,7 +78,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-comments fa-fw"></i> Reply
-                <button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Relpy</button>
+                
+                <!-- 로그인 했는지 체크, 했으면 버튼표시 -->
+                <sec:authorize access="isAuthenticated()">
+                	<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Relpy</button>
+                </sec:authorize>
+                
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -208,11 +221,19 @@ $(document).ready(function(){
 	var modalModBtn = $("#modalModBtn");
 	var modalRemoveBtn = $("#modalRemoveBtn");
 	var modalCloseBtn = $("#modalCloseBtn")
+	
+	
+	var replyer = null;
+	
+	<sec:authorize access="isAuthenticated()">
+		replyer = '<sec:authentication property="principal.username"/>'
+	</sec:authorize>
 		
 		
 	$("#addReplyBtn").on("click", function(e){
 		
 		modal.find("input").val("")
+		modal.find("input[name='replyer']").val(replyer);
 		modalInputReplyDate.closest("div").hide();
 		modal.find("button[id != 'modalCloseBtn']").hide()
 		modalRegisterBtn.show()
@@ -268,9 +289,25 @@ $(document).ready(function(){
 	modalModBtn.on("click", function(e){
 		console.log("update...............")
 		
+		var originalReplyer = modalInputReplyer.val();
+		
+		
 		var reply = {
 			reply: 	modalInputReply.val(),
-			rno: modal.data("rno")
+			rno: modal.data("rno"),
+			replyer: originalReplyer
+		}
+		
+		if(!replyer){
+			alert("로그인후 수정 가능합니다.")
+			modal.modal("hide")
+			return;
+		}
+		
+		if(replyer != originalReplyer){
+			alert("자신이 작성한 댓글만 수정이 가능합니다.")
+			modal.modal("hide")
+			return;
 		}
 		
 		replyService.update(reply, function(result){
@@ -287,7 +324,22 @@ $(document).ready(function(){
 		let rno =  modal.data("rno")
 		
 		console.log(rno)
-		replyService.remove(rno, function(result){
+		
+		if(!replyer){
+			alert("로그인후 삭제가 가능합니다.")
+			modal.modal("hide")
+			return;
+		}
+		
+		var originalReplyer = modalInputReplyer.val();
+		
+		if(replyer != originalReplyer){
+			alert("자신이 작성한 댓글만 삭제가 가능합니다.")
+			modal.modal("hide")
+			return;
+		}
+		
+		replyService.remove(rno, originalreplyer , function(result){
 			alert(result);
 			modal.modal("hide")
 			showList(pageNum)

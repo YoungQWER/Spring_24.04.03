@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,8 @@ public class ReplyController {
 
 	private final ReplyService replyService;
 	
+	//로그인한 사람만 댓글
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json",
 			produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyVO reply){
@@ -53,9 +56,11 @@ public class ReplyController {
 		return new ResponseEntity<ReplyVO>(vo, HttpStatus.OK);
 	}
 
+	
 	//localhost:8181/reply/12
-	@DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> delete(@PathVariable("rno") Long rno){
+	@PreAuthorize("principal.username == #reply,replyer")
+	@DeleteMapping(value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> delete(@RequestBody ReplyVO reply , @PathVariable("rno") Long rno){
 		
 		log.info("delete........." + rno);
 		
@@ -65,6 +70,7 @@ public class ReplyController {
 	}
 	
 	//localhost:8181/reply/13  +  { "reply": "수정내용이와야됨" }
+	@PreAuthorize("principal.username == #reply,replyer")
 	@PutMapping(value = "/{rno}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> update(@PathVariable("rno") Long rno, @RequestBody ReplyVO reply ){
 		log.info("rno........." + rno);

@@ -11,7 +11,7 @@
 	<bean id="accessDeniedHandler" class="org.zerock.security.CustomAccessDeniedHandler">
 	</bean>
 	
-	<bean id="customLoginSuccessHandler" class="org.zerock.security.CustomLoginSuccessHandler"></bean>
+	<!-- <bean id="customLoginSuccessHandler" class="org.zerock.security.CustomLoginSuccessHandler"></bean> -->
 	
 	<bean id="customUserDetailsService" class="org.zerock.security.CustomUserDetailsService"></bean>
 	
@@ -22,12 +22,16 @@
 		
 		<security:csrf disabled="true"/>
 		
-		<security:form-login login-page="/customLogin" 
-			authentication-success-handler-ref="customLoginSuccessHandler"/>
-		
-		<security:logout logout-url="/customLogout" invalidate-session="true"/>
+		<!-- <security:form-login login-page="/customLogin" 
+			authentication-success-handler-ref="customLoginSuccessHandler"/> -->
+		<security:form-login login-page="/customLogin"/>
+			
+		<security:logout logout-url="/customLogout" invalidate-session="true"
+				delete-cookies="remember-me, JSESSION_ID"/>
 			 
 		<security:access-denied-handler ref="accessDeniedHandler"/>
+		
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="86400"/> <!-- 60초 * 60분 * 24시간 -->
 		
 	</security:http>
 	
