@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Login Page</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -52,10 +52,12 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember-me" type="checkbox" >Remember Me
+                                        <input name="remember-me" type="checkbox">Remember Me
                                     </label>
                                 </div>
+                                
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                
                             </fieldset>
                         </form>
                     </div>

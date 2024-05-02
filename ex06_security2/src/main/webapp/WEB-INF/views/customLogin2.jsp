@@ -18,8 +18,9 @@
 		<div>
 			<input type="password" name="password" value="1111">
 		</div>
+		
 		<div>
-			<input type="checkbox" name="remember-me">Remember Me		
+			<input type="checkbox" name="remember-me">ReMember Me
 		</div>
 		<div>
 			<input type="submit">

@@ -52,10 +52,13 @@ var replyService = (function(){
 	function remove(rno, replyer, callback, error){
 	
 		console.log("remove Rno : " + rno)
+		console.log("--------------------------------")
+		console.log("remove replyer : " + replyer)
+		
 		$.ajax({
 			type: "delete",
 			url: "/reply/" +rno,
-			data: JSON.stringify({ rno:rno, replyer:replyer}),
+			data: JSON.stringify({ rno:rno, replyer : replyer}),
 			contentType: "application/json; charset=utf-8",
 			
 			success: function(msg, status, xhr){

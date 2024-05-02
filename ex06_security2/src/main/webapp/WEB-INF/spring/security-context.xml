@@ -24,14 +24,15 @@
 		
 		<!-- <security:form-login login-page="/customLogin" 
 			authentication-success-handler-ref="customLoginSuccessHandler"/> -->
-		<security:form-login login-page="/customLogin"/>
-			
-		<security:logout logout-url="/customLogout" invalidate-session="true"
-				delete-cookies="remember-me, JSESSION_ID"/>
+
+		<security:form-login login-page="/customLogin" />
+		
+		<security:logout logout-url="/customLogout" invalidate-session="true" 
+			delete-cookies="remember-me, JSESSION_ID"/>
 			 
 		<security:access-denied-handler ref="accessDeniedHandler"/>
 		
-		<security:remember-me data-source-ref="dataSource" token-validity-seconds="86400"/> <!-- 60초 * 60분 * 24시간 -->
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="86400" />
 		
 	</security:http>
 	

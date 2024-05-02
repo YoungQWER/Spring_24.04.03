@@ -46,16 +46,14 @@
 	            		<input class="form-control" name="writer" value="${board.writer}" >
 	           		</div>
 	           		
-	           		<!-- 로그인 했는지 확인 -->
 	           		<sec:authentication property="principal" var="pinfo"/>
 	           		
 	           		<sec:authorize access="isAuthenticated()">
-	           			<c:if test="${pinfo.username eq board.writer}">
+		           		<c:if test="${pinfo.username eq board.writer }">
 			           		<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
 			           		<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
 		           		</c:if>
 	           		</sec:authorize>
-	           		<!-- 로그인 했는지 확인 End -->
 	           		
 	           		<button type="submit" data-oper='list' class="btn btn-info">List</button>
             	</form>	

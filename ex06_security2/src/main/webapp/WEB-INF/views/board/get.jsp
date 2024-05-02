@@ -41,16 +41,16 @@
             		<input class="form-control" name="writer" value="${board.writer}" readonly="readonly">
            		</div>
            		
-           		<!--본인만 수정할 수 있게 -->
+           		
            		<sec:authentication property="principal" var="pinfo"/>
            		
            		<sec:authorize access="isAuthenticated()">
-           			<c:if test="${pinfo.username eq board.writer}">
+           			<c:if test="${pinfo.username eq board.writer }">
            				<button data-oper='modify' class="btn btn-primary" >Modify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            			</c:if>
            		</sec:authorize>
-				<!-- 본인만 수정할 수 있게 End -->
-           	
+           		
+           		
            		<button data-oper='list' class="btn btn-warning">List</button>
            		
            		<form id="operForm" action="/board/modify" method="get">
@@ -79,7 +79,6 @@
             <div class="panel-heading">
                 <i class="fa fa-comments fa-fw"></i> Reply
                 
-                <!-- 로그인 했는지 체크, 했으면 버튼표시 -->
                 <sec:authorize access="isAuthenticated()">
                 	<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Relpy</button>
                 </sec:authorize>
@@ -222,18 +221,16 @@ $(document).ready(function(){
 	var modalRemoveBtn = $("#modalRemoveBtn");
 	var modalCloseBtn = $("#modalCloseBtn")
 	
-	
 	var replyer = null;
 	
 	<sec:authorize access="isAuthenticated()">
-		replyer = '<sec:authentication property="principal.username"/>'
+		replyer = '<sec:authentication property="principal.username" />'  		
 	</sec:authorize>
-		
 		
 	$("#addReplyBtn").on("click", function(e){
 		
 		modal.find("input").val("")
-		modal.find("input[name='replyer']").val(replyer);
+		modal.find("input[name='replyer']").val(replyer); 
 		modalInputReplyDate.closest("div").hide();
 		modal.find("button[id != 'modalCloseBtn']").hide()
 		modalRegisterBtn.show()
@@ -241,6 +238,9 @@ $(document).ready(function(){
 		$(".modal").modal("show");
 	});
 		
+	
+	
+	
 		
 	//댓글 등록
 	modalRegisterBtn.on("click", function(e){
@@ -293,21 +293,21 @@ $(document).ready(function(){
 		
 		
 		var reply = {
-			reply: 	modalInputReply.val(),
 			rno: modal.data("rno"),
+			reply: 	modalInputReply.val(),
 			replyer: originalReplyer
 		}
 		
 		if(!replyer){
 			alert("로그인후 수정 가능합니다.")
 			modal.modal("hide")
-			return;
+			return ;
 		}
 		
 		if(replyer != originalReplyer){
 			alert("자신이 작성한 댓글만 수정이 가능합니다.")
 			modal.modal("hide")
-			return;
+			return
 		}
 		
 		replyService.update(reply, function(result){
@@ -328,18 +328,20 @@ $(document).ready(function(){
 		if(!replyer){
 			alert("로그인후 삭제가 가능합니다.")
 			modal.modal("hide")
-			return;
+			return ;
 		}
 		
 		var originalReplyer = modalInputReplyer.val();
 		
+		console.log("originalReplyer : " + originalReplyer)
+		
 		if(replyer != originalReplyer){
 			alert("자신이 작성한 댓글만 삭제가 가능합니다.")
 			modal.modal("hide")
-			return;
+			return
 		}
 		
-		replyService.remove(rno, originalreplyer , function(result){
+		replyService.remove(rno, originalReplyer ,function(result){
 			alert(result);
 			modal.modal("hide")
 			showList(pageNum)

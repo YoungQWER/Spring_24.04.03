@@ -31,7 +31,7 @@
             		
             		<div class="form-group">
 	            		<label>Writer</label>
-	            		<input class="form-control" name="writer" readonly="readonly" 
+	            		<input class="form-control" name="writer"  readonly="readonly"
 	            		value='<sec:authentication property="principal.username"/>'>
             		</div>
             		

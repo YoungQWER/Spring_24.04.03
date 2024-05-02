@@ -65,7 +65,7 @@ public class BoardController {
 //	}
 	
 	@GetMapping("/register")  //  WEB_INF/views/board/register.jsp
-	@PreAuthorize("isAuthenticated()")		//로그인 했을때만 접속가능
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
@@ -89,7 +89,6 @@ public class BoardController {
 		
 	}
 	
-					//아이디가 같을때만 수정가능
 	@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
@@ -109,13 +108,11 @@ public class BoardController {
 		
 	}
 	
-	// 아이디가 같은 경우에만 삭제가능
 	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno")Long bno, @ModelAttribute("cri") Criteria cri, 
-			RedirectAttributes rttr, @RequestParam("writer") String writer)  {
-		
-		log.info("remove........" + bno); 
+				RedirectAttributes rttr,  @RequestParam("writer") String writer) {
+		log.info("remove........" + bno);
 		
 		if(boardService.remove(bno)) {
 			rttr.addFlashAttribute("result", "delete");
