@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.zerock.domain.LiveStreamVO;
 
-
 public interface LiveStreamService {
 
 	List<LiveStreamVO> getLiveStreams();

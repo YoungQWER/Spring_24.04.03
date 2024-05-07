@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.CartVO;
-import org.zerock.domain.EventVO;
 import org.zerock.domain.LiveStreamVO;
 import org.zerock.service.EventService;
 import org.zerock.service.LiveStreamService;
@@ -85,7 +84,4 @@ public class MainController {
         return "categoryList";
     }
 
-
-	
-	
 }

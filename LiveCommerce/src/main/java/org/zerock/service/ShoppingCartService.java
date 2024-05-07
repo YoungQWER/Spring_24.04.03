@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.zerock.domain.CartVO;
 
-
 public interface ShoppingCartService {
 	
 	List<CartVO> getCartItems();
