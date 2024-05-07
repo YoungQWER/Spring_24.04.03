@@ -23,6 +23,17 @@
 		<property name="password" value="book_ex" />	
 	</bean> -->
 	
+	 <!-- 데이터베이스 연결 설정 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/livecommerce"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+    
+    
+    <!-- hikari -->
+	<!-- 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
@@ -31,7 +42,9 @@
 		<property name="username" value="test"></property>
 	
 		<property name="password" value="1234" />	
-	</bean>	
+	</bean>	 
+	
+	-->
 	
 	<!-- jdbc연결 설정 정보를 이용해서 커넥션 풀 생성 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
