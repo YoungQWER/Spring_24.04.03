@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.CartVO;
 import org.zerock.domain.EventVO;
+import org.zerock.domain.LiveStreamVO;
 import org.zerock.service.EventService;
 import org.zerock.service.LiveStreamService;
 import org.zerock.service.ShoppingCartService;
@@ -26,7 +27,7 @@ public class MainController {
 
 	private final UserService userService;
 	
-	private final ShoppingCartService shppingCartService;
+	private final ShoppingCartService shoppingCartService;
 	
 	private final EventService eventService;
 	
@@ -54,7 +55,7 @@ public class MainController {
  	@GetMapping("/cart")
     public String goToShoppingCartPage(Model model) {
 
-	 List<CartVO> cartItems = shppingCartService.getCartItems();
+	 List<CartVO> cartItems = shoppingCartService.getCartItems();
         model.addAttribute("cartItems", cartItems);
         return "shoppingCartPage";
     }
@@ -64,16 +65,17 @@ public class MainController {
  	public String goToMainPage() {
  	    return "mainPage";
  	}
-
+ 	
+ 	//이벤트페이지
     @GetMapping("/event")
     public String goToEventPage() {
         return "eventPage";
     }
 
+    //라이브페이지
     @GetMapping("/live")
     public String goToLiveStreamPage(Model model) {
-        // 라이브 페이지로 이동하는 로직
-        List<LiveStream> liveStreams = liveStreamService.getLiveStreams();
+        List<LiveStreamVO> liveStreams = liveStreamService.getLiveStreams();
         model.addAttribute("liveStreams", liveStreams);
         return "liveStreamPage";
     }

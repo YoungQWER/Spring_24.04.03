@@ -2,11 +2,12 @@ package org.zerock.service;
 
 import java.util.List;
 
-import org.zerock.domain.LiveChatVO;
+import org.zerock.domain.LiveStreamVO;
+
 
 public interface LiveStreamService {
 
-	List<LiveChatVO> getLiveStreams();
+	List<LiveStreamVO> getLiveStreams();
     void startLiveStream(int streamId);
     void endLiveStream(int streamId);
 }
