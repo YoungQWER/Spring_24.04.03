@@ -1,6 +1,7 @@
 package org.zerock.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*-- 카테고리 정보 테이블
@@ -11,6 +12,7 @@ CREATE TABLE Categories (
 
 @Data
 @AllArgsConstructor
+@Builder
 public class CategoryVO {
 	
 	private int categoryID;

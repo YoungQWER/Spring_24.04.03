@@ -3,6 +3,7 @@ package org.zerock.domain;
 import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*-- 카카오톡 결제 정보 테이블
@@ -19,6 +20,7 @@ CREATE TABLE KakaoPayments (
 
 @Data
 @AllArgsConstructor
+@Builder
 public class KakaoPaymentVO {
 
 	private int paymentID;

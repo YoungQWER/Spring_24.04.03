@@ -16,7 +16,6 @@
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.zerock.domain.AuthVO"/>
-    <fullyQualifiedTypeName name="org.junit.Test"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="org.zerock.mapper.MemberMapper"/>
@@ -41,7 +40,6 @@
     <fullyQualifiedTypeName name="org.zerock.domain.CartItem"/>
     <fullyQualifiedTypeName name="org.zerock.domain.ShoppingCartVO"/>
     <fullyQualifiedTypeName name="org.zerock.domain.LiveChatVO"/>
-    <fullyQualifiedTypeName name="org.zerock.domain.CartVO"/>
     <fullyQualifiedTypeName name="org.zerock.domain.EventVO"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
@@ -51,13 +49,15 @@
     <fullyQualifiedTypeName name="org.zerock.service.LiveStreamService"/>
     <fullyQualifiedTypeName name="org.zerock.service.ShoppingCartService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="lombok.Builder"/>
     <fullyQualifiedTypeName name="org.zerock.mapper.LiveStreamMapper"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.zerock.domain.LiveStreamVO"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="org.zerock.domain.CartVO"/>
 </qualifiedTypeNameHistroy>

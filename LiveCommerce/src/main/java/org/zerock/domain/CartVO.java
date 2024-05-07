@@ -1,6 +1,7 @@
 package org.zerock.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*-- 장바구니 테이블
@@ -17,6 +18,7 @@ CREATE TABLE ShoppingCart (
 
 @Data
 @AllArgsConstructor
+@Builder
 public class CartVO {
 
 	private int cartID;
