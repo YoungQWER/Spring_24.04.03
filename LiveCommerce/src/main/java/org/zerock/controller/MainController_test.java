@@ -32,9 +32,9 @@ public class MainController {
 
     private final LiveStreamService liveStreamService;
 
+	//로그인
     @GetMapping("/login")
     public String goToLoginPage() {
-        // 로그인 폼을 보여주는 로직
         return "loginPage";
     }
 
