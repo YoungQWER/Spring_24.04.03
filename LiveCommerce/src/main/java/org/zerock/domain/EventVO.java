@@ -1,8 +1,10 @@
 package org.zerock.domain;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*-- 이벤트 정보 테이블
@@ -18,6 +20,7 @@ CREATE TABLE Events (
 
 @Data
 @AllArgsConstructor
+@Builder
 public class EventVO {
 	
 	private int eventID;

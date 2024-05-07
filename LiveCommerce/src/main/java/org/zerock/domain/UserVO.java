@@ -1,6 +1,7 @@
 package org.zerock.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*-- 사용자 정보 테이블
@@ -15,9 +16,10 @@ CREATE TABLE Users (
 
 @Data
 @AllArgsConstructor
+@Builder
 public class UserVO {
 
-	private int UserID;
+	private int UserID;  //사용자 번호
 	private String username;
 	private String email;
 	private String password;

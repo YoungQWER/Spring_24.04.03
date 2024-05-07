@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.LiveStreamMapper">
+
+    <!-- 모든 라이브 스트림 목록을 조회하는 쿼리 -->
+    <select id="getLiveStreams" resultType="org.zerock.domain.LiveStreamVO">
+        SELECT * FROM LiveStreams
+    </select>
+    
+    <!-- 특정 라이브 스트림을 조회하는 쿼리 -->
+    <select id="getLiveStream" resultType="org.zerock.domain.LiveStreamVO" parameterType="int">
+        SELECT * FROM LiveStreams WHERE StreamID = #{streamId}
+    </select>
+    
+    <!-- 특정 라이브 스트림을 시작하는 쿼리 -->
+    <update id="startLiveStream" parameterType="int">
+        UPDATE LiveStreams SET StartTime = NOW() WHERE StreamID = #{streamId}
+    </update>
+    
+    <!-- 특정 라이브 스트림을 종료하는 쿼리 -->
+    <update id="endLiveStream" parameterType="int">
+        UPDATE LiveStreams SET EndTime = NOW() WHERE StreamID = #{streamId}
+    </update>
+    
+</mapper>

@@ -9,3 +9,4 @@ public interface EventService {
 	List<EventVO> getEvents();
     EventVO getEventDetail(int eventId);
 }
+	

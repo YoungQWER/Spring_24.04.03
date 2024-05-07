@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.EventMapper">
+
+    <insert id="createEvent" parameterType="org.zerock.domain.EventVO">
+        INSERT INTO Events (EventName, Description, EventDate, Location, Photo)
+        VALUES (#{eventName}, #{description}, #{eventDate}, #{location}, #{photo})
+    </insert>
+
+    <select id="getEvent" resultType="org.zerock.domain.EventVO" parameterType="int">
+        SELECT * FROM Events WHERE EventID = #{eventId}
+    </select>
+
+    <update id="updateEvent" parameterType="org.zerock.domain.EventVO">
+        UPDATE Events SET EventName = #{eventName}, Description = #{description},
+        EventDate = #{eventDate}, Location = #{location}, Photo = #{photo}
+        WHERE EventID = #{eventID}
+    </update>
+
+    <delete id="deleteEvent" parameterType="int">
+        DELETE FROM Events WHERE EventID = #{eventId}
+    </delete>
+
+    <select id="getAllEvents" resultType="org.zerock.domain.EventVO">
+        SELECT * FROM Events
+    </select>
+
+</mapper>
