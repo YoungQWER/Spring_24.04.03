@@ -229,6 +229,13 @@
 		</dependency>
 		<!-- End 기능 추가 -->
 		
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+		    <groupId>com.mysql</groupId>
+		    <artifactId>mysql-connector-j</artifactId>
+		    <version>8.3.0</version>
+		</dependency>
+		
 		
 	</dependencies>
     <build>

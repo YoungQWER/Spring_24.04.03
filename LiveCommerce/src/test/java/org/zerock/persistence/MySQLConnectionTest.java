@@ -7,7 +7,7 @@ public class MySQLConnectionTest {
     public static void main(String[] args) {
         // JDBC 연결 정보 설정
         String url = "jdbc:mysql://localhost:3306/livecommerce";
-        String username = "root";
+        String username = "test";
         String password = "1234";
 
         // JDBC 연결 객체 초기화
