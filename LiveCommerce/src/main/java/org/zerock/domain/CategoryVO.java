@@ -3,6 +3,7 @@ package org.zerock.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /*-- 카테고리 정보 테이블
 CREATE TABLE Categories (
@@ -13,6 +14,7 @@ CREATE TABLE Categories (
 @Data
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 //카테고리 정보 VO 클래스
 public class CategoryVO {
  private int categoryID; // 카테고리 ID

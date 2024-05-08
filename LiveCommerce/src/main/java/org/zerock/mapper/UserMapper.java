@@ -21,5 +21,4 @@ public interface UserMapper {
 
     List<UserVO> getUserList();
     
-    UserVO selectUserByEmail(@Param("email") String email); // 여기에 메서드 추가
 }
