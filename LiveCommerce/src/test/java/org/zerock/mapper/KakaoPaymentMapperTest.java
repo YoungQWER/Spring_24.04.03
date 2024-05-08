@@ -1,6 +1,9 @@
 package org.zerock.mapper;
 
+import org.zerock.domain.KakaoPaymentVO;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.Test;
@@ -8,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.KakaoPaymentVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -23,12 +25,17 @@ public class KakaoPaymentMapperTest {
     @Test // Create
     public void testCreate() {
         KakaoPaymentVO kakaoPayment = KakaoPaymentVO.builder()
-                .orderID(1)
+                .orderID(4)
                 .paymentMethod("Credit Card")
                 .amount(50000)
                 .kakaoTransactionID("KAKAOTRANS12345")
                 .status("Completed")
                 .build();
+        
+        // 현재 시간 설정
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        Timestamp paymentDate = Timestamp.valueOf(currentDateTime);
+        kakaoPayment.setPaymentDate(paymentDate);
 
         log.info("Before insert: " + kakaoPayment);
 
@@ -45,13 +52,18 @@ public class KakaoPaymentMapperTest {
 
     @Test // Update
     public void testUpdate() {
+        // 현재 시간 설정
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        Timestamp paymentDate = Timestamp.valueOf(currentDateTime);
+
         KakaoPaymentVO kakaoPayment = KakaoPaymentVO.builder()
-                .paymentID(1)
-                .orderID(2)
+                .paymentID(3)
+                .orderID(3)
                 .paymentMethod("Bank Transfer")
                 .amount(70000)
                 .kakaoTransactionID("KAKAOTRANS54321")
                 .status("Pending")
+                .paymentDate(paymentDate) // paymentDate 추가
                 .build();
 
         log.info("Before update: " + kakaoPayment);
@@ -63,7 +75,7 @@ public class KakaoPaymentMapperTest {
 
     @Test // Delete
     public void testDelete() {
-        kakaoPaymentMapper.deleteKakaoPayment(1);
+        kakaoPaymentMapper.deleteKakaoPayment(2);
     }
 
     @Test // 전체 리스트 조회
