@@ -13,8 +13,10 @@ CREATE TABLE Categories (
 @Data
 @AllArgsConstructor
 @Builder
+//카테고리 정보 VO 클래스
 public class CategoryVO {
-	
-	private int categoryID;
-	private String categoryName;
+ private int categoryID; // 카테고리 ID
+ private String categoryName; // 카테고리명
+ 
+ // 생성자, Getter 및 Setter
 }

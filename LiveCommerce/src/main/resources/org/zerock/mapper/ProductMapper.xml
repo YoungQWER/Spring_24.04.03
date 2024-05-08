@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ProductMapper">
+
+    <!-- 제품 등록 -->
+    <insert id="insertProduct" parameterType="org.zerock.domain.ProductVO">
+        INSERT INTO Products (ProductName, Description, Price, Photo)
+        VALUES (#{productName}, #{description}, #{price}, #{photo})
+    </insert>
+    
+    <!-- 제품 조회 -->
+    <select id="selectProduct" resultType="org.zerock.domain.ProductVO" parameterType="int">
+        SELECT * FROM Products WHERE ProductID = #{productID}
+    </select>
+    
+    <!-- 모든 제품 조회 -->
+    <select id="selectAllProducts" resultType="org.zerock.domain.ProductVO">
+        SELECT * FROM Products
+    </select>
+    
+    <!-- 제품 수정 -->
+    <update id="updateProduct" parameterType="org.zerock.domain.ProductVO">
+        UPDATE Products
+        SET ProductName = #{productName}, Description = #{description}, Price = #{price}, Photo = #{photo}
+        WHERE ProductID = #{productID}
+    </update>
+    
+    <!-- 제품 삭제 -->
+    <delete id="deleteProduct" parameterType="int">
+        DELETE FROM Products WHERE ProductID = #{productID}
+    </delete>
+    
+</mapper>

@@ -3,6 +3,7 @@ package org.zerock.domain;
 import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -19,12 +20,16 @@ CREATE TABLE LiveStreams (
 
 @Data
 @AllArgsConstructor
+@Builder
+//라이브스트리밍 정보 VO 클래스
 public class LiveStreamVO {
-    private int streamID;
-    private String title;
-    private String url;
-    private String description;
-    private Timestamp startTime;
-    private Timestamp endTime;
-    private String photo;
+ private int streamID; // 스트리밍 ID
+ private String title; // 제목
+ private String url; // URL
+ private String description; // 설명
+ private Timestamp startTime; // 시작 시간
+ private Timestamp endTime; // 종료 시간
+ private String photo; // 사진의 경로
+ 
+ // 생성자, Getter 및 Setter
 }

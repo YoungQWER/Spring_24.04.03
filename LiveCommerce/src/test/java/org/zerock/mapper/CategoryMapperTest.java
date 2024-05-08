@@ -38,14 +38,14 @@ public class CategoryMapperTest {
 		
 		CategoryVO ca = CategoryVO.builder()
 				.categoryName("자켓")
-				.categoryID(2)
+				.categoryID(1)
 				.build();
 		category.updateCategory(ca);
 		log.info(ca);
 	}
 	@Test //D
 	public void testD() {
-		category.deleteCategory(2);
+		category.deleteCategory(4);
 	}
 
 }

@@ -9,9 +9,9 @@
         VALUES (#{eventName}, #{description}, #{eventDate}, #{location}, #{photo})
     </insert>
 
-    <select id="getEvent" resultType="org.zerock.domain.EventVO" parameterType="int">
-        SELECT * FROM Events WHERE EventID = #{eventId}
-    </select>
+	<select id="getEvent" resultType="org.zerock.domain.EventVO" parameterType="int">
+	    SELECT * FROM Events WHERE EventID = #{eventId}
+	</select>
 
     <update id="updateEvent" parameterType="org.zerock.domain.EventVO">
         UPDATE Events SET EventName = #{eventName}, Description = #{description},

@@ -20,4 +20,6 @@ public interface UserMapper {
     boolean loginUser(@Param("username") String username, @Param("password") String password);
 
     List<UserVO> getUserList();
+    
+    UserVO selectUserByEmail(@Param("email") String email); // 여기에 메서드 추가
 }

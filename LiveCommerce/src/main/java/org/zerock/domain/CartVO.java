@@ -19,10 +19,12 @@ CREATE TABLE ShoppingCart (
 @Data
 @AllArgsConstructor
 @Builder
+//장바구니 VO 클래스
 public class CartVO {
-
-	private int cartID;
-	private int	userID;
-	private int productID;
-	private int quantity;
+ private int cartID; // 장바구니 ID
+ private int userID; // 사용자 ID
+ private int productID; // 제품 ID
+ private int quantity; // 수량
+ 
+ // 생성자, Getter 및 Setter
 }

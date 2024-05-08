@@ -21,13 +21,15 @@ CREATE TABLE Events (
 @Data
 @AllArgsConstructor
 @Builder
+//이벤트 정보 VO 클래스
 public class EventVO {
-	
-	private int eventID;
-	private String eventName;
-	private String description;
-	private Timestamp eventDate;
-	private String location;
-	private String photo;
-
+ private int eventID; // 이벤트 ID
+ private String eventName; // 이벤트명
+ private String description; // 이벤트 설명
+ private Timestamp eventDate; // 이벤트 일자
+ private String location; // 이벤트 장소
+ private String photo; // 이벤트 사진 경로
+ private int productID; // 상품 ID
+ 
+ // 생성자, Getter 및 Setter
 }

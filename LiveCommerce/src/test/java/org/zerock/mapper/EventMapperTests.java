@@ -43,7 +43,7 @@ public class EventMapperTests {
     @Test //R
     public void testGetEvent() {
     	
-    	EventVO ev = eventMapper.getEvent(1);
+    	EventVO ev = eventMapper.getEvent(2);
     	log.info(ev);
     }
     @Test //U
@@ -55,7 +55,8 @@ public class EventMapperTests {
     			.eventDate(new Timestamp(System.currentTimeMillis()))
     			.location("수정된 위치")
     			.photo("수정된 사진")
-    			.eventID(3)
+    			.eventID(1)
+    			.productID(1)
     			.build();
     	
     	eventMapper.updateEvent(ev);
@@ -63,7 +64,7 @@ public class EventMapperTests {
     }
     @Test //D
     public void testDelete() {
-    	eventMapper.deleteEvent(3);
+    	eventMapper.deleteEvent(2);
     }
     @Test  //전체 리스트 조회
     public void testGetEventList() {

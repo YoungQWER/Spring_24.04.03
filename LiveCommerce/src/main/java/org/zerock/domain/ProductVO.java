@@ -1,25 +1,20 @@
 package org.zerock.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
-/*-- 제품 정보 테이블
-CREATE TABLE Products (
-    ProductID INT PRIMARY KEY AUTO_INCREMENT,
-    ProductName VARCHAR(50) NOT NULL,
-    Description TEXT,
-    Price INT NOT NULL,
-    Photo VARCHAR(255) -- 사진의 경로를 저장할 열
-);
-*/
 
 @Data
 @AllArgsConstructor
+@Builder
+//제품 정보 VO 클래스
 public class ProductVO {
-	
-	private int productID;
-	private String productName;
-	private String description;
-	private int price;
-	private int photo;
+ private int productID; // 제품 ID
+ private String productName; // 제품명
+ private String description; // 제품 설명
+ private int price; // 제품 가격
+ private String photo; // 제품 사진 경로
+ 
+ // 생성자, Getter 및 Setter
 }

@@ -30,7 +30,7 @@ public class UserMapperTests {
     @Test  //C
     public void testRegisterUser() {
         UserVO user = UserVO.builder()
-        		.UserID(2)
+        		.userID(2)
         		.username("test")
         		.email("aaa@naver.com")
         		.password("1234")
@@ -61,7 +61,7 @@ public class UserMapperTests {
     			.password("4567")
     			.shippingAddress("부산시 해운대구")
     			.shippingPostalCode("12705")
-    			.UserID(1)
+    			.userID(1)
     			.build();
     	
     	userMapper.updateUser(user);

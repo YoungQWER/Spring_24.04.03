@@ -18,12 +18,12 @@ CREATE TABLE Users (
 @AllArgsConstructor
 @Builder
 public class UserVO {
-
-	private int UserID;  //사용자 번호
-	private String username;
-	private String email;
-	private String password;
-	private String shippingAddress;
-	private String shippingPostalCode;
-	
+    private int userID; // 사용자 ID
+    private String username; // 사용자 이름
+    private String email; // 사용자 이메일
+    private String password; // 사용자 비밀번호
+    private String shippingAddress; // 배송 주소
+    private String shippingPostalCode; // 배송 우편번호
+    
+    // 생성자, Getter 및 Setter
 }
