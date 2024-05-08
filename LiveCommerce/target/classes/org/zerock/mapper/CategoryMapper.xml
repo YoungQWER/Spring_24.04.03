@@ -12,6 +12,10 @@
 	<select id="getCategory" resultType="org.zerock.domain.CategoryVO" parameterType="int">
 	    SELECT * FROM Categories WHERE CategoryID = #{categoryID}
 	</select>
+	
+	<select id="getAllCategories" resultType="org.zerock.domain.CategoryVO">
+        SELECT * FROM Categories
+    </select>
 
 	<update id="updateCategory" parameterType="org.zerock.domain.CategoryVO">
 	    UPDATE Categories SET CategoryName = #{categoryName}

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /*
 CREATE TABLE LiveStreams (
@@ -20,6 +21,7 @@ CREATE TABLE LiveStreams (
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor  // 기본 생성자 추가
 @Builder
 //라이브스트리밍 정보 VO 클래스
 public class LiveStreamVO {

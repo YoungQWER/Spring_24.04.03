@@ -1,19 +1,22 @@
 package org.zerock.mapper;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
+
 import org.zerock.domain.EventVO;
 
-@Mapper
 public interface EventMapper {
 
-    void createEvent(EventVO event);
+    // Create
+    public void createEvent(EventVO event);
 
-    EventVO getEvent(int eventId);
+    // Read
+    public EventVO getEvent(int eventID);
 
-    void updateEvent(EventVO event);
+    public List<EventVO> getAllEvents();
 
-    void deleteEvent(int eventId);
+    // Update
+    public void updateEvent(EventVO event);
 
-    List<EventVO> getAllEvents();
+    // Delete
+    public void deleteEvent(int eventID);
 }

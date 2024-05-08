@@ -12,4 +12,10 @@ public interface LiveStreamMapper {
     void startLiveStream(int streamId);
 
     void endLiveStream(int streamId);
+
+    void insertLiveStream(LiveStreamVO liveStream);
+
+    void updateLiveStream(LiveStreamVO liveStream);
+
+    void deleteLiveStream(int streamId);
 }

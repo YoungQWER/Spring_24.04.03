@@ -1,15 +1,17 @@
 package org.zerock.mapper;
 
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 import org.zerock.domain.CartVO;
 
 public interface CartMapper {
 
-    void addToCart(CartVO cart);
+    List<CartVO> getAllCarts();
 
-    CartVO getCartItem(@Param("cartID") int cartID);
+    CartVO getCart(int cartID);
 
-    void updateCartItem(CartVO cart);
+    void insertCart(CartVO cart);
 
-    void deleteCartItem(@Param("cartID") int cartID);
+    void updateCart(CartVO cart);
+
+    void deleteCart(int cartID);
 }

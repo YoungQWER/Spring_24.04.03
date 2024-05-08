@@ -47,5 +47,9 @@ public class CategoryMapperTest {
 	public void testD() {
 		category.deleteCategory(4);
 	}
+	 @Test
+	    public void testGetAllCategories() {
+	        category.getAllCategories().forEach(category -> log.info(category));
+	    }
 
 }

@@ -50,7 +50,7 @@ public class ProductMapperTest {
 
     @Test
     public void testSelectProduct() {
-        ProductVO product = productMapper.selectProduct(1); // 제품 ID에 따라 수정
+        ProductVO product = productMapper.selectProduct(1); // 제품 ID에 따라 조회
 
        log.info(product);
     }
@@ -63,7 +63,7 @@ public class ProductMapperTest {
 
     @Test
     public void testUpdateProduct() {
-        ProductVO product = productMapper.selectProduct(2); // 제품 ID에 따라 수정
+        ProductVO product = productMapper.selectProduct(1); // 제품 ID에 따라 수정
         product.setProductName("Updated Product");
 
         productMapper.updateProduct(product);
@@ -74,9 +74,9 @@ public class ProductMapperTest {
 
     @Test
     public void testDeleteProduct() {
-        productMapper.deleteProduct(2); // 제품 ID에 따라 수정
+        productMapper.deleteProduct(1); // 제품 ID에 따라 수정
 
-        ProductVO deletedProduct = productMapper.selectProduct(1); // 제품 ID에 따라 수정
-        log.info(deletedProduct);
+        
+        
     }
 }

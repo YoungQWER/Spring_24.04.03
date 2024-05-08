@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.zerock.mapper.KakaoPaymentMapper">
 
     <!-- Create -->
     <insert id="insertKakaoPayment" parameterType="org.zerock.domain.KakaoPaymentVO">
-        INSERT INTO KakaoPayments (OrderID, PaymentMethod, Amount, KakaoTransactionID, Status)
-        VALUES (#{orderID}, #{paymentMethod}, #{amount}, #{kakaoTransactionID}, #{status})
+        INSERT INTO KakaoPayments (OrderID, PaymentMethod, Amount, PaymentDate, KakaoTransactionID, Status)
+        VALUES (#{orderID}, #{paymentMethod}, #{amount}, #{paymentDate}, #{kakaoTransactionID}, #{status})
     </insert>
 
     <!-- Read -->
-    <select id="selectKakaoPayment" resultType="org.zerock.domain.KakaoPaymentVO" parameterType="int">
+    <select id="selectKakaoPayment" parameterType="int" resultType="org.zerock.domain.KakaoPaymentVO">
         SELECT * FROM KakaoPayments WHERE PaymentID = #{paymentID}
-    </select>
-
-    <select id="selectAllKakaoPayments" resultType="org.zerock.domain.KakaoPaymentVO">
-        SELECT * FROM KakaoPayments
     </select>
 
     <!-- Update -->
     <update id="updateKakaoPayment" parameterType="org.zerock.domain.KakaoPaymentVO">
         UPDATE KakaoPayments
-        SET OrderID = #{orderID}, PaymentMethod = #{paymentMethod}, Amount = #{amount}, 
-            KakaoTransactionID = #{kakaoTransactionID}, Status = #{status}
+        SET OrderID = #{orderID}, PaymentMethod = #{paymentMethod}, Amount = #{amount},
+            PaymentDate = #{paymentDate}, KakaoTransactionID = #{kakaoTransactionID}, Status = #{status}
         WHERE PaymentID = #{paymentID}
     </update>
 
@@ -30,5 +28,10 @@
     <delete id="deleteKakaoPayment" parameterType="int">
         DELETE FROM KakaoPayments WHERE PaymentID = #{paymentID}
     </delete>
+
+    <!-- Read all KakaoPayments -->
+    <select id="selectAllKakaoPayments" resultType="org.zerock.domain.KakaoPaymentVO">
+        SELECT * FROM KakaoPayments
+    </select>
 
 </mapper>

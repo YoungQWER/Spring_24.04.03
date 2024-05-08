@@ -1,25 +1,21 @@
 package org.zerock.mapper;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.zerock.domain.OrderVO;
 
-@Mapper
 public interface OrderMapper {
 
-    // 주문 등록
-    void insertOrder(OrderVO order);
-    
-    // 주문 조회
-    OrderVO selectOrder(int orderID);
-    
-    // 모든 주문 조회
-    List<OrderVO> selectAllOrders();
-    
-    // 주문 수정
-    void updateOrder(OrderVO order);
-    
-    // 주문 삭제
-    void deleteOrder(int orderID);
+    // Create
+    public void createOrder(OrderVO order);
+
+    // Read
+    public OrderVO getOrder(int orderID);
+
+    public List<OrderVO> getAllOrders();
+
+    // Update
+    public void updateOrder(OrderVO order);
+
+    // Delete
+    public void deleteOrder(int orderID);
 }

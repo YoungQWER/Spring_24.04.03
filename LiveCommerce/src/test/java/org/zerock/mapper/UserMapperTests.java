@@ -47,7 +47,7 @@ public class UserMapperTests {
     @Test //R
     public void testGetUser() {
         
-    	 UserVO user = userMapper.getUser(1);
+    	 UserVO user = userMapper.getUser(2);
     	
     	 log.info(user);
 
@@ -61,7 +61,7 @@ public class UserMapperTests {
     			.password("4567")
     			.shippingAddress("부산시 해운대구")
     			.shippingPostalCode("12705")
-    			.userID(1)
+    			.userID(2)
     			.build();
     	
     	userMapper.updateUser(user);
