@@ -31,12 +31,9 @@
         SELECT * FROM Users
     </select>
     
-	    <!-- UserMapper.xml -->
-	<mapper namespace="org.zerock.mapper.UserMapper">
+    <!-- UserMapper.xml -->
 	    <select id="selectUserByEmail" resultType="org.zerock.domain.UserVO">
 	        SELECT * FROM users WHERE email = #{email}
 	    </select>
-	</mapper>
-    
 
 </mapper>
