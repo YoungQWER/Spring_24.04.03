@@ -14,36 +14,36 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService{
-   
-   private final ProductMapper productMapper;
+	
+	private final ProductMapper productMapper;
 
-   @Override
-   public void registerProduct(ProductVO product) {
-      productMapper.insertProduct(product);
-      
-   }
+	@Override
+	public void registerProduct(ProductVO product) {
+		productMapper.insertProduct(product);
+		
+	}
 
-   @Override
-   public ProductVO getProduct(int productID) {
-   return productMapper.selectProduct(productID);
-      
-   }
+	@Override
+	public ProductVO getProduct(int productID) {
+	return productMapper.selectProduct(productID);
+		
+	}
 
-   @Override
-   public List<ProductVO> getAllProducts() {
-      return productMapper.selectAllProducts();
-   }
+	@Override
+	public List<ProductVO> getAllProducts() {
+		return productMapper.selectAllProducts();
+	}
 
-   @Override
-   public void updateProduct(ProductVO product) {
-      productMapper.updateProduct(product);
-      
-   }
+	@Override
+	public void updateProduct(ProductVO product) {
+		productMapper.updateProduct(product);
+		
+	}
 
-   @Override
-   public void deleteProduct(int productID) {
-      productMapper.deleteProduct(productID);
-      
-   }
+	@Override
+	public void deleteProduct(int productID) {
+		productMapper.deleteProduct(productID);
+		
+	}
 
 }

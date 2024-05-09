@@ -21,4 +21,5 @@ public interface UserMapper {
 
     List<UserVO> getUserList();
     
+    UserVO selectUserByUserName(@Param("username") String username); 
 }

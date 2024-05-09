@@ -31,9 +31,12 @@
         SELECT * FROM Users
     </select>
     
-    <!-- UserMapper.xml -->
-	    <select id="selectUserByEmail" resultType="org.zerock.domain.UserVO">
-	        SELECT * FROM users WHERE email = #{email}
-	    </select>
+        <!-- 사용자 이름으로 사용자 조회 -->
+    <select id="selectUserByUserName" resultType="org.zerock.domain.UserVO" parameterType="java.lang.String">
+        SELECT * FROM Users
+        WHERE Username = #{username}
+    </select>
+    
+    
 
 </mapper>

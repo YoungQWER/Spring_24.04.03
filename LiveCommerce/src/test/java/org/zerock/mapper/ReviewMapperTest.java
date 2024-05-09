@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.junit.Test;
@@ -37,7 +38,6 @@ public class ReviewMapperTest {
         assertNotNull(reviews);
         reviews.forEach(review -> log.info(review));
     }
-
     @Test
     public void testInsertReview() {
         // 새로운 후기 정보 추가
@@ -45,12 +45,14 @@ public class ReviewMapperTest {
                 .userID(1) // 사용자 ID 입력
                 .productID(1) // 제품 ID 입력
                 .rating(5) // 평점 입력
-                .comment("테스트 후기") // 후기 내용 입력
+                .comment("테스트 후기22") // 후기 내용 입력
+                .reviewDate(new Timestamp(System.currentTimeMillis())) // 현재 시간으로 설정
                 .build();
         mapper.insertReview(newReview);
         assertNotNull(newReview.getReviewID()); // ReviewID가 제대로 생성되었는지 확인
         log.info("새로운 후기 정보 추가: " + newReview);
     }
+
 
     @Test
     public void testUpdateReview() {

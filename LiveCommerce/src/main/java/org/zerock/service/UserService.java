@@ -6,15 +6,17 @@ import org.zerock.domain.UserVO;
 
 public interface UserService {
 
-    public void registerUser(UserVO user);
+    void registerUser(UserVO user);
 
-    public UserVO getUser(int userId);
+    UserVO getUser(int userId);
 
-    public void updateUser(UserVO user);
+    void updateUser(UserVO user);
 
-    public void deleteUser(int userId);
+    void deleteUser(int userId);
 
-    public boolean loginUser(String username, String password);
+    boolean loginUser(String username, String password);
 
-    public List<UserVO> getUserList();
+    List<UserVO> getUserList();
+    
+    UserVO selectUserByUserName(String username);
 }

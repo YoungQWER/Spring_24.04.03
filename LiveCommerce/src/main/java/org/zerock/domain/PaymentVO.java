@@ -19,8 +19,8 @@ CREATE TABLE Payments (
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
 //결제 정보 VO 클래스
 public class PaymentVO {
  private int paymentID; // 결제 ID

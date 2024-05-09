@@ -43,7 +43,7 @@ public class PaymentServiceTest {
     public void testCreatePayment() {
         PaymentVO payment = new PaymentVO();
         // 결제 정보 설정
-        payment.setOrderID(1); // 예시로 주문 ID를 1로 설정
+        payment.setOrderID(3); // 예시로 주문 ID를 1로 설정
         payment.setPaymentMethod("Credit Card");
         payment.setAmount(50000);
         // 이하 필요한 정보 설정
@@ -56,7 +56,7 @@ public class PaymentServiceTest {
 
     @Test
     public void testUpdatePayment() {
-        int paymentID = 3; // 예시로 결제 ID를 3로 설정
+        int paymentID = 4; // 예시로 결제 ID를 3로 설정
         PaymentVO payment = paymentService.getPayment(paymentID);
 
         // 수정할 내용 설정
@@ -71,7 +71,7 @@ public class PaymentServiceTest {
 
     @Test
     public void testDeletePayment() {
-        int paymentID = 3; // 예시로 결제 ID를 3로 설정
+        int paymentID = 4; // 예시로 결제 ID를 3로 설정
         paymentService.deletePayment(paymentID);
 
         PaymentVO deletedPayment = paymentService.getPayment(paymentID);

@@ -94,4 +94,13 @@ public class UserMapperTests {
     	log.info(isInvalidLogin);
    
     }
+    @Test
+    public void testselectUser() {
+        
+   	 UserVO user = userMapper.selectUserByUserName("testUser");
+   	
+   	 log.info(user);
+
+   }
+    
 }

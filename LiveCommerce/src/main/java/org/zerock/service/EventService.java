@@ -5,8 +5,14 @@ import java.util.List;
 import org.zerock.domain.EventVO;
 
 public interface EventService {
-	
-	List<EventVO> getEvents();
-    EventVO getEventDetail(int eventId);
+
+    void createEvent(EventVO event);
+
+    EventVO getEvent(int eventID);
+
+    List<EventVO> getAllEvents();
+
+    void updateEvent(EventVO event);
+
+    void deleteEvent(int eventID);
 }
-	
