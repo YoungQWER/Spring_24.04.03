@@ -1031,3 +1031,9 @@ Caused by: java.lang.UnsupportedClassVersionError: org/springframework/security/
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-09 16:51:28.134
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-09 16:52:00.726
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-09 16:52:00.730
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
