@@ -61,31 +61,31 @@
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
-		    <version>5.2.7.RELEASE</version>
+		    <version>5.5.0</version> <!-- 변경된 부분 -->
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
-		    <version>5.2.7.RELEASE</version>
+		    <version>5.5.0</version> <!-- 변경된 부분 -->
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
-		    <version>5.2.7.RELEASE</version>
+		    <version>5.5.0</version> <!-- 변경된 부분 -->
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>
-		    <version>5.2.7.RELEASE</version>
+		    <version>5.5.0</version> <!-- 변경된 부분 -->
 		</dependency>
-		<!-- End시큐리티 -->
-				
+		<!-- End 시큐리티 -->
+
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -235,6 +235,36 @@
 		    <artifactId>mysql-connector-j</artifactId>
 		    <version>8.3.0</version>
 		</dependency>
+		
+		<!-- 시큐리티 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.2.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.2.7.RELEASE</version>
+		</dependency>
+		<!-- End 시큐리티 -->
 		
 		
 	</dependencies>

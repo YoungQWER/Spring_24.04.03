@@ -30,7 +30,7 @@
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <!-- 다른 필요한 설정들 추가 -->
-    	
 </bean>
+
 </beans>
 
