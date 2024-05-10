@@ -4,23 +4,34 @@ import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+	"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class UserServiceImplTest {
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+    
+    
+    @Test
+    public void testpass() {
+    	log.info("+++++++++++++++++++++++++" + encoder);
+    }
+    
     @Test // Register User
     public void testRegisterUser() {
         UserVO user = UserVO.builder()
-                .username("testUser")
-                .password("testPassword")
+                .username("testq")
+                .password(encoder.encode("1111"))
                 .email("test@example.com")
                 .shippingAddress("경기도 성남시")
                 .shippingPostalCode("18506")
@@ -45,9 +56,9 @@ public class UserServiceImplTest {
     @Test // Update User
     public void testUpdateUser() {
         UserVO user = UserVO.builder()
-                .userID(9)
-                .username("updatedUser")
-                .password("updatedPassword")
+                .userID(5)
+                .username("admin1")
+                .password(encoder.encode("1234"))
                 .email("updated@example.com")
                 .shippingAddress("경기도 성남시")
                 .shippingPostalCode("18506")
@@ -82,12 +93,18 @@ public class UserServiceImplTest {
             log.info("Login failed for user: " + username);
         }
     }
-
     @Test // Get User List
     public void testGetUserList() {
         log.info("List of users:");
 
         userService.getUserList().forEach(user -> log.info(user));
     }
+    @Test
+    public void testUpdateUserEnabledByUsername() {
+        String username = "testa";
+        int enabled = 1;
 
+        userService.updateUserEnabledByUsername(username, enabled);
+
+}
 }

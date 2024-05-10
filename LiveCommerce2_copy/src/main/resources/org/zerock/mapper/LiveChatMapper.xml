@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.LiveChatMapper">
+
+    <resultMap id="liveChatResultMap" type="org.zerock.domain.LiveChatVO">
+        <id property="chatID" column="ChatID"/>
+        <result property="userID" column="UserID"/>
+        <result property="message" column="Message"/>
+        <result property="chatTime" column="ChatTime"/>
+    </resultMap>
+
+    <select id="getLiveChat" resultMap="liveChatResultMap">
+        SELECT * FROM LiveChat WHERE ChatID = #{chatID}
+    </select>
+
+    <select id="getAllLiveChats" resultMap="liveChatResultMap">
+        SELECT * FROM LiveChat
+    </select>
+
+    <insert id="insertLiveChat" parameterType="org.zerock.domain.LiveChatVO">
+        INSERT INTO LiveChat (UserID, Message, ChatTime)
+        VALUES (#{userID}, #{message}, #{chatTime})
+    </insert>
+
+    <update id="updateLiveChat" parameterType="org.zerock.domain.LiveChatVO">
+        UPDATE LiveChat
+        SET UserID = #{userID}, Message = #{message}, ChatTime = #{chatTime}
+        WHERE ChatID = #{chatID}
+    </update>
+
+    <delete id="deleteLiveChat">
+        DELETE FROM LiveChat WHERE ChatID = #{chatID}
+    </delete>
+
+</mapper>

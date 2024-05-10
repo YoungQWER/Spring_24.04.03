@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="oracle.net.nt.ConnectDescription"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -29,12 +28,9 @@
     <fullyQualifiedTypeName name="org.zerock.domain.ShoppingCartVO"/>
     <fullyQualifiedTypeName name="org.zerock.domain.LiveChatVO"/>
     <fullyQualifiedTypeName name="org.zerock.domain.EventVO"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="org.zerock.service.EventService"/>
     <fullyQualifiedTypeName name="org.zerock.service.LiveStreamService"/>
     <fullyQualifiedTypeName name="org.zerock.service.ShoppingCartService"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.zerock.mapper.LiveStreamMapper"/>
     <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
@@ -49,15 +45,19 @@
     <fullyQualifiedTypeName name="org.zerock.domain.CategoryVO"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="org.zerock.service.CategoryService"/>
     <fullyQualifiedTypeName name="org.zerock.service.ProductService"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.access.AccessDeniedHandler"/>
-    <fullyQualifiedTypeName name="org.zerock.mapper.UserMapper"/>
-    <fullyQualifiedTypeName name="org.zerock.domain.UserVO"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="org.zerock.security.CustomUserDetailsService"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.apache.coyote.http11.upgrade.UpgradeServletOutputStream"/>
+    <fullyQualifiedTypeName name="org.zerock.mapper.UserMapper"/>
+    <fullyQualifiedTypeName name="org.zerock.domain.UserVO"/>
 </qualifiedTypeNameHistroy>

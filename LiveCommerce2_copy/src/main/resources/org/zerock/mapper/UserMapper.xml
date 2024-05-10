@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.UserMapper">
+
+    <insert id="registerUser" parameterType="org.zerock.domain.UserVO">
+        INSERT INTO Users (Username, Email, Password, ShippingAddress, ShippingPostalCode)
+        VALUES (#{username}, #{email}, #{password}, #{shippingAddress}, #{shippingPostalCode})
+    </insert>
+
+    <select id="getUser" resultType="org.zerock.domain.UserVO" parameterType="int">
+        SELECT * FROM Users WHERE UserID = #{userId}
+    </select>
+
+    <resultMap type="org.zerock.domain.UserVO" id="UserMap">
+        <id property="userID" column="UserID" />
+        <result property="username" column="Username"/>
+        <result property="email" column="Email"/>
+        <result property="password" column="Password"/>
+        <result property="shippingAddress" column="ShippingAddress"/>
+        <result property="shippingPostalCode" column="ShippingPostalCode"/>
+    </resultMap>
+    
+    <select id="read" resultMap="UserMap">
+	    SELECT 
+	        m.UserID, m.Username, m.Email, m.Password, m.ShippingAddress, m.ShippingPostalCode, a.auth
+	    FROM 
+	        Users m LEFT JOIN tbl_member_auth a
+	    ON 
+	        m.UserID = a.UserID
+	    WHERE 
+	        m.UserID = #{userId}
+	</select>
+    
+
+    <update id="updateUser" parameterType="org.zerock.domain.UserVO">
+        UPDATE Users SET Username = #{username}, Email = #{email}, Password = #{password},
+        ShippingAddress = #{shippingAddress}, ShippingPostalCode = #{shippingPostalCode}
+        WHERE UserID = #{userID}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM Users WHERE UserID = #{userId}
+    </delete>
+
+    <select id="loginUser" resultType="boolean" parameterType="map">
+        SELECT COUNT(*) > 0 FROM Users WHERE Username = #{username} AND Password = #{password}
+    </select>
+
+    <select id="getUserList" resultType="org.zerock.domain.UserVO">
+        SELECT * FROM Users
+    </select>
+
+    <!-- 사용자 이름으로 사용자 조회 -->
+    <select id="selectUserByUserName" resultType="org.zerock.domain.UserVO" parameterType="java.lang.String">
+        SELECT * FROM Users
+        WHERE Username = #{username}
+    </select>
+   
+    <update id="updateUserEnabledByUsername">
+        UPDATE Users
+        SET enabled = #{enabled}
+        WHERE username = #{username}
+    </update>
+</mapper>
