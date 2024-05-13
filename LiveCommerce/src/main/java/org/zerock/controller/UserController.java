@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerSubmit(@ModelAttribute("user") UserVO user) {
+    public String registerSubmit(@ModelAttribute("user") UserVO user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "registerForm";
+        }
         userService.registerUser(user);
-        return "redirect:/customLogin"; // 회원가입 성공 시 로그인 페이지로 이동
+        return "redirect:/user/login";
     }
 }

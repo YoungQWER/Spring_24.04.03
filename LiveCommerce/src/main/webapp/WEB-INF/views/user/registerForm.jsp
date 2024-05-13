@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>User Registration</h2>
-    <form action="/user/register" method="post">
+    <form action="/user/register" method="post" modelAttribute="user">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

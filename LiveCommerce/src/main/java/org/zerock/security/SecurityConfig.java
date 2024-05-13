@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .logoutUrl("/user/logout") // 로그아웃 URL 지정
-                .logoutSuccessUrl("/") // 로그아웃 성공 시 이동할 페이지 지정
+                .logoutSuccessUrl("/live/main") // 로그아웃 성공 시 이동할 페이지 지정
                 .permitAll(); // 로그아웃에 대한 접근은 모두 허용
     }
 }

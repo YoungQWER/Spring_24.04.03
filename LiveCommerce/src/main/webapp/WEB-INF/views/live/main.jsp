@@ -79,11 +79,16 @@
                 <% if (request.isUserInRole("ROLE_USER")) { %>
                     <li><a href="/live/profile">내 프로필</a></li>
                     <li><a href="/cart">장바구니</a></li>
-                    <li><a href="/logout">로그아웃</a></li>
+                    <form action="/customLogout" method="post">
+					    <button type="submit">로그아웃</button>
+					    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</form>
                     
                 <% } else if (request.isUserInRole("ROLE_ADMIN")) { %>
                     <li><a href="/admin/dashboard">관리자 대시보드</a></li>
-                    <li><a href="/logout">로그아웃</a></li>
+                    <form action="/user/logout" method="post">
+                        <button type="submit">로그아웃</button>
+                          </form>
                 <% } else { %>
                     <li><a href="/customLogin">로그인</a></li>
                     <li><a href="/user/register">회원가입</a></li>

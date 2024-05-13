@@ -1,7 +1,11 @@
 package org.zerock.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +50,10 @@ public class LoginController {
       
    }
    
-     @GetMapping("/customLogout")
-   public void logoutGET() {
-      log.info("custom logout.........");
+   @PostMapping("/customLogout")
+   public String logout() {
+       SecurityContextHolder.clearContext(); // 세션 정보를 지움
+       return "redirect:/live/main"; // 로그아웃 후 이동할 페이지
    }
-    
-    
 }
 
