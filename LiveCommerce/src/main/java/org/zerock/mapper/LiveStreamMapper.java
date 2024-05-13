@@ -20,4 +20,5 @@ public interface LiveStreamMapper {
     
     // 라이브 스트림 삭제
     public void deleteLiveStream(int streamID);
+    
 }

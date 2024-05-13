@@ -14,25 +14,21 @@
         <result property="photo" column="Photo"/>
     </resultMap>
 
-    <select id="getLiveStreams" resultMap="LiveStreamResultMap">
-        SELECT * FROM LiveStreams
-    </select>
-
     <select id="getLiveStream" parameterType="int" resultMap="LiveStreamResultMap">
-        SELECT * FROM LiveStreams WHERE StreamID = #{streamID}
+        SELECT * FROM LiveStreams WHERE streamID = #{streamID}
     </select>
 
-    <insert id="insertLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
-        INSERT INTO LiveStreams (Title, URL, Description, StartTime, EndTime, Photo)
-        VALUES (#{title}, #{url}, #{description}, #{startTime}, #{endTime}, #{photo})
-    </insert>
+	<insert id="insertLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
+	    INSERT INTO LiveStreams (Title, URL, Description, StartTime, EndTime, Photo, ChatID, ProductID)
+	    VALUES (#{title}, #{url}, #{description}, #{startTime}, #{endTime}, #{photo}, #{chatID}, #{productID})
+	</insert>
 
-    <update id="updateLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
-        UPDATE LiveStreams
-        SET Title = #{title}, URL = #{url}, Description = #{description}, StartTime = #{startTime}, 
-            EndTime = #{endTime}, Photo = #{photo}
-        WHERE StreamID = #{streamID}
-    </update>
+	<update id="updateLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
+	    UPDATE LiveStreams
+	    SET Title = #{title}, URL = #{url}, Description = #{description}, StartTime = #{startTime}, 
+	        EndTime = #{endTime}, Photo = #{photo}, ChatID = #{chatID}, ProductID = #{productID}
+	    WHERE StreamID = #{streamID}
+	</update>
 
     <delete id="deleteLiveStream" parameterType="int">
         DELETE FROM LiveStreams WHERE StreamID = #{streamID}

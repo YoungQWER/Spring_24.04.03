@@ -46,6 +46,10 @@ public class LiveStreamServiceTest {
                 .url("https://samplestream.com")
                 .description("샘플 설명")
                 .startTime(new Timestamp(System.currentTimeMillis()))
+                .endTime(new Timestamp(System.currentTimeMillis()))
+                .photo("apple.p")
+                .productID(1)
+                .chatID(1)
                 .build();
         service.registerLiveStream(newStream);
         assertNotNull(newStream.getStreamID());

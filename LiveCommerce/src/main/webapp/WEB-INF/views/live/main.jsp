@@ -1,3 +1,6 @@
+<%@page import="org.zerock.service.LiveStreamServiceImpl"%>
+<%@page import="org.zerock.service.LiveStreamService"%>
+<%@page import="org.zerock.domain.LiveStreamVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -64,49 +67,85 @@
             padding: 20px;
             text-align: center;
         }
+        /* 추가된 스타일 */
+        .video-container {
+            position: relative;
+            width: 228px; /* 가로 크기 조정 */
+            height: 342px; /* 세로 크기 조정 */
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+        }
+        .product-id {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>라이브 커머스</h1>
-        <nav>
-            <ul>
-<!--                 <li><a href="/home">홈</a></li> -->
-<!--                 <li><a href="/products">상품 목록</a></li> -->
-<!--                 <li><a href="/about">회사 소개</a></li> -->
-                <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
-                <%-- 로그인 여부에 따라 다른 메뉴 표시 --%>
-                <% if (request.isUserInRole("ROLE_USER")) { %>
-                    <li><a href="/live/profile">내 프로필</a></li>
-                    <li><a href="/cart">장바구니</a></li>
-                    <form action="/customLogout" method="post">
-					    <button type="submit">로그아웃</button>
-					    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					</form>
-                    
-                <% } else if (request.isUserInRole("ROLE_ADMIN")) { %>
-                    <li><a href="/admin/dashboard">관리자 대시보드</a></li>
-                    <form action="/user/logout" method="post">
-                        <button type="submit">로그아웃</button>
-                          </form>
-                <% } else { %>
-                    <li><a href="/customLogin">로그인</a></li>
-                    <li><a href="/user/register">회원가입</a></li>
-                <% } %>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="hero">
-            <h2>Welcome to Live Commerce!</h2>
-            <p>Discover amazing products and shop with ease.</p>
-            <a href="/products" class="btn">Shop Now</a>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Live Commerce. All rights reserved.</p>
-    </footer>
+<header>
+    <h1>라이브 커머스</h1>
+    <nav>
+        <ul>
+            <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
+            <% if (request.isUserInRole("ROLE_USER")) { %>
+                <li><a href="/live/profile">내 프로필</a></li>
+                <li><a href="/cart">장바구니</a></li>
+                <form action="/customLogout" method="post">
+                    <button type="submit">로그아웃</button>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                </form>
+            <% } else if (request.isUserInRole("ROLE_ADMIN")) { %>
+                <li><a href="/admin/dashboard">관리자 대시보드</a></li>
+                <form action="/user/logout" method="post">
+                    <button type="submit">로그아웃</button>
+                </form>
+            <% } else { %>
+                <li><a href="/customLogin">로그인</a></li>
+                <li><a href="/user/register">회원가입</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+
+
+<main>
+
+        <a href="/products" class="btn">Shop Now</a>
+        
+        <p>Discover amazing products and shop with ease.</p>
+        <div class="video-container">
+            <!-- 동영상 출력 -->
+            <video controls>
+                <source src="동영상 경로/동영상 파일명.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <h2>Welcome to Live Commerce!</h2>
+        <!-- ProductID 출력 -->
+        <div class="product-id">
+            <%-- 서비스 클래스 주입 --%>
+            <% LiveStreamService liveStreamService = new LiveStreamServiceImpl(); %>
+            <%-- getLiveStream 메서드를 호출하여 LiveStreamVO 객체를 가져옴 --%>
+            <% LiveStreamVO liveStreamVO = liveStreamService.getLiveStream(streamID); %>
+            
+            <%-- LiveStreamVO 객체에서 ProductID를 가져와서 출력 --%>
+            ProductID: <%= liveStreamVO.getProductID() %> 
+            <%-- ProductID를 클릭하면 product.jsp로 이동 --%>
+            <a href="product.jsp?productID=<%= liveStreamVO.getProductID() %>">Product Details</a>
+        </div>
+</main>
+
+
+
+
+<footer>
+    <p>&copy; 2024 Live Commerce. All rights reserved.</p>
+</footer>
 </body>
 </html>

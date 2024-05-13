@@ -30,8 +30,8 @@ public class UserServiceImplTest {
     @Test // Register User
     public void testRegisterUser() {
         UserVO user = UserVO.builder()
-                .username("testq")
-                .password(encoder.encode("1111"))
+                .username("로그")
+                .password(encoder.encode("2222"))
                 .email("test@example.com")
                 .shippingAddress("경기도 성남시")
                 .shippingPostalCode("18506")

@@ -32,6 +32,8 @@ public class LiveStreamVO {
  private Timestamp startTime; // 시작 시간
  private Timestamp endTime; // 종료 시간
  private String photo; // 사진의 경로
+ private int productID; //상품 ID
+ private int chatID; //체팅 ID
  
  // 생성자, Getter 및 Setter
 }
