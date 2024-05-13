@@ -86,7 +86,7 @@
                     <li><a href="/logout">로그아웃</a></li>
                 <% } else { %>
                     <li><a href="/customLogin">로그인</a></li>
-                    <li><a href="/register">회원가입</a></li>
+                    <li><a href="/user/register">회원가입</a></li>
                 <% } %>
             </ul>
         </nav>

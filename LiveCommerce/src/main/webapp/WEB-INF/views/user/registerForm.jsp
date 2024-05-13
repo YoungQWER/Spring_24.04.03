@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
 </head>
 <body>
     <h2>User Registration</h2>
-    <form action="/user/registerForm" method="post">
+    <form action="/user/register" method="post">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

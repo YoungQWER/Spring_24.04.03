@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.zerock.domain.UserVO;
-import org.zerock.mapper.UserMapper;
 import org.zerock.service.UserService;
 
 import lombok.extern.log4j.Log4j;
@@ -19,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
    
    @Autowired
-   private UserService userService;
+    private UserService userService;
    
    @GetMapping("/accessError")
    public void accessDenied(Authentication auth, Model model) {
@@ -51,21 +50,7 @@ public class LoginController {
    public void logoutGET() {
       log.info("custom logout.........");
    }
-     
-     
-     @GetMapping("/user/registerForm")
-     public String registerForm(Model model) {
-         model.addAttribute("user", new UserVO());	
-         return "/user/registerForm"; // 회원가입 폼으로 이동
-     }
-
-     @PostMapping("/user/registerForm")
-     public String registerSubmit(@ModelAttribute UserVO user) {
-         userService.registerUser(user);
-         log.info("++++++++++++++++++++++++++++++" + user);
-         
-         return "redirect:/customLogin"; // 회원가입 성공 시 로그인 페이지로 이동
-     }
+    
     
 }
 

@@ -31,16 +31,16 @@ public class UserVO implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+   @Override
+   public String getUsername() {
+      return username;
+   }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
+   @Override
+   public String getPassword() {
+      return password;
+   }
+    
     @Override
     public boolean isAccountNonExpired() {
         // 계정이 만료되지 않았음을 반환합니다.
@@ -62,6 +62,6 @@ public class UserVO implements UserDetails {
     @Override
     public boolean isEnabled() {
         // 계정이 활성화되었음을 반환합니다.
-        return enabled == 1;
+        return true;
     }
 }
