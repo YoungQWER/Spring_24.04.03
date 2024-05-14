@@ -102,6 +102,7 @@
                 <li><a href="/admin/dashboard">관리자 대시보드</a></li>
                 <form action="/user/logout" method="post">
                     <button type="submit">로그아웃</button>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 </form>
             <% } else { %>
                 <li><a href="/customLogin">로그인</a></li>
@@ -115,30 +116,16 @@
 
 <main>
 
-        <a href="/products" class="btn">Shop Now</a>
+        <h2>Welcome to Live Commerce!</h2>
+
         
-        <p>Discover amazing products and shop with ease.</p>
         <div class="video-container">
             <!-- 동영상 출력 -->
-            <video controls>
-                <source src="동영상 경로/동영상 파일명.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div>
+            </div>
         </div>
         
-        <h2>Welcome to Live Commerce!</h2>
-        <!-- ProductID 출력 -->
-        <div class="product-id">
-            <%-- 서비스 클래스 주입 --%>
-            <% LiveStreamService liveStreamService = new LiveStreamServiceImpl(); %>
-            <%-- getLiveStream 메서드를 호출하여 LiveStreamVO 객체를 가져옴 --%>
-            <% LiveStreamVO liveStreamVO = liveStreamService.getLiveStream(streamID); %>
-            
-            <%-- LiveStreamVO 객체에서 ProductID를 가져와서 출력 --%>
-            ProductID: <%= liveStreamVO.getProductID() %> 
-            <%-- ProductID를 클릭하면 product.jsp로 이동 --%>
-            <a href="product.jsp?productID=<%= liveStreamVO.getProductID() %>">Product Details</a>
-        </div>
+
 </main>
 
 
