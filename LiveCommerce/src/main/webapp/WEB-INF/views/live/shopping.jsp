@@ -6,6 +6,18 @@
     <meta charset="UTF-8">
     <title>제품 상세 정보</title>
     <!-- 여기에 필요한 CSS 및 JavaScript 파일을 추가하세요 -->
+    <script>
+        // 수량이 변경될 때 호출되는 함수
+        function updatePrice() {
+            // 수량과 가격을 가져옴
+            var quantity = document.getElementById("quantity").value;
+            var price = ${product.price};
+            
+            // 가격을 계산하여 표시
+            var totalPrice = quantity * price;
+            document.getElementById("totalPrice").innerText = totalPrice + "원";
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -20,13 +32,25 @@
         <p>제품 설명: ${product.description}</p>
         <p>가격: ${product.price}</p>
         <img src="${product.photo}" alt="${product.productName}" width="300">
-        <form action="/live/order" method="get">
-            <input type="hidden" name="id" value="${product.productID}">
-            <button type="submit">구매하기</button>
-        </form>
-        <form action="/live/cart" method="get">
-            <input type="hidden" name="id" value="${product.productID}">
-            <button type="submit">장바구니</button>
+        
+        <!-- 현재 로그인한 사용자 정보 출력 -->
+        <h3>현재 로그인한 사용자 정보</h3>
+        <p>사용자 ID: ${currentUser}</p>
+        
+        <!-- 주문 양식 -->
+        <form action="/live/payment" method="post">
+            <!-- 상품 정보를 hidden input으로 전달 -->
+            <input type="hidden" name="productId" value="${product.productId}">
+            
+            <!-- 주문 수량 입력 폼 -->
+            <label for="quantity">수량:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
+            
+            <!-- 총 가격 표시 -->
+            <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
+            
+            <!-- 결제 버튼 -->
+            <input type="submit" value="결제하기">
         </form>
     </div>
 </main>

@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 //제품 정보 VO 클래스
 public class ProductVO {
- private int productID; // 제품 ID
+ private int productId; // 제품 ID
  private String productName; // 제품명
  private String description; // 제품 설명
  private int price; // 제품 가격

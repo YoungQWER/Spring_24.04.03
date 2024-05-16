@@ -32,7 +32,7 @@ public class ProductServiceImplTest {
 		
 		productService.registerProduct(product);
 		
-		log.info("Registered Product ID: " + product.getProductID());
+		log.info("Registered Product ID: " + product.getProductId());
 	}
 	
 	@Test

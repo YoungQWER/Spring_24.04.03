@@ -18,4 +18,5 @@ public interface CategoryMapper {
     void deleteCategory(@Param("categoryID") int categoryID);
 
     List<CategoryVO> getAllCategories();
+    
 }

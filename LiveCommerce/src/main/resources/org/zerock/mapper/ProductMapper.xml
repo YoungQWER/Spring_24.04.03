@@ -18,6 +18,11 @@
         SELECT * FROM Products
     </select>
     
+     <!-- categoryId로 해당 카테고리에 속하는 상품을 가져오는 쿼리 -->
+    <select id="getProductsByCategory" resultType="org.zerock.domain.ProductVO" parameterType="int">
+        SELECT * FROM Products WHERE CategoryID = #{categoryId}
+    </select>
+    
     <!-- 제품 수정 -->
     <update id="updateProduct" parameterType="org.zerock.domain.ProductVO">
         UPDATE Products

@@ -19,4 +19,7 @@ public interface ProductMapper {
     
     // 제품 삭제
     void deleteProduct(int productID);
+    
+    // categoryId로 해당 카테고리에 속하는 상품을 가져오는 메소드
+    List<ProductVO> getProductsByCategory(int categoryId);
 }

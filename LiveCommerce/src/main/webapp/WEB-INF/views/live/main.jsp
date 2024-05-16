@@ -91,8 +91,16 @@
 </head>
 <body>
 <header>
-    <h1>라이브 커머스</h1>
-    <nav>
+<h1>라이브 커머스</h1>
+<nav class="main-nav">
+    <ul>
+        <%-- 카테고리 목록 표시 --%>
+        <c:forEach items="${categories}" var="category">
+            <li><a href="/live/category?categoryId=${category.categoryID}">${category.categoryName}</a></li>
+        </c:forEach>
+    </ul>
+</nav>
+     <nav class="user-nav">
         <ul>
             <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
             <% if (request.isUserInRole("ROLE_USER")) { %>
@@ -122,7 +130,7 @@
    <h1>Products</h1>
        <table border="1">
            <tr>
-               <th>Product ID</th>
+               <th>Product Id</th>
                <th>Product Name</th>
                <th>Description</th>
                <th>Price</th>
@@ -130,12 +138,12 @@
            </tr>
            <c:forEach items="${products}" var="product">
                <tr>
-                   <td>${product.productID}</td>
+                   <td>${product.productId}</td>
                    <td>${product.productName}</td>
                    <td>${product.description}</td>
                    <td>${product.price}</td>
                    <td><img src="${product.photo}" alt="${product.productName}" width="100"></td>
-                   <td><a href="/live/product?id=${product.productID}">View Details</a></td>
+                   <td><a href="/live/product?id=${product.productId}">View Details</a></td>
                </tr>
            </c:forEach>
       </table>

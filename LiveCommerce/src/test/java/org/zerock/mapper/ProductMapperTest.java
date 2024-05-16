@@ -45,7 +45,7 @@ public class ProductMapperTest {
 
         productMapper.insertProduct(product);
 
-        assertNotNull(product.getProductID()); // 제품 ID가 생성되었는지 확인
+        assertNotNull(product.getProductId()); // 제품 ID가 생성되었는지 확인
     }
 
     @Test

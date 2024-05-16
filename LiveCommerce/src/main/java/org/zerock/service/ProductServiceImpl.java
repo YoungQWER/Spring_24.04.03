@@ -45,5 +45,9 @@ public class ProductServiceImpl implements ProductService{
 		productMapper.deleteProduct(productID);
 		
 	}
+    @Override
+    public List<ProductVO> getProductsByCategory(int categoryId) {
+        return productMapper.getProductsByCategory(categoryId);
+    }
 
 }
