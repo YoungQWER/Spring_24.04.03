@@ -18,4 +18,6 @@ public interface OrderMapper {
 
     // Delete
     public void deleteOrder(int orderID);
+    
+    OrderVO getOrderByUserIDAndProductID(int userID, int productID);
 }

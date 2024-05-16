@@ -40,4 +40,9 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderVO> getAllOrders() {
         return orderMapper.getAllOrders();
     }
+    
+    @Override
+    public OrderVO getOrderByUserIDAndProductID(int userID, int productID) {
+        return orderMapper.getOrderByUserIDAndProductID(userID, productID);
+    }
 }

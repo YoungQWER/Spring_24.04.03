@@ -43,7 +43,6 @@
             <input type="hidden" name="productId" value="${product.productId}">
             <input type="hidden" name="userID" value="${user.userID}">
             
-            
             <!-- 주문 수량 입력 폼 -->
             <label for="quantity">수량:</label>
             <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
@@ -52,10 +51,21 @@
             <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
             
             <!-- 결제 버튼 -->
-            <input type="submit" value="결제하기">
+            <input type="submit" value="주문하기">
+        </form>
+        
+        <!-- 장바구니 추가 폼 -->
+        <form action="/cart/add" method="post">
+            <!-- 상품 정보를 hidden input으로 전달 -->
+            <input type="hidden" name="productId" value="${product.productId}">
+            <input type="hidden" name="userID" value="${user.userID}">
+            
+            <!-- 장바구니에 추가 버튼 -->
+            <input type="submit" value="장바구니 추가">
         </form>
     </div>
 </main>
+
 
 <footer>
     <!-- 웹사이트 푸터 정보를 여기에 추가하세요 -->

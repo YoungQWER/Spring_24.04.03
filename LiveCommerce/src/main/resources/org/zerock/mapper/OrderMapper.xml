@@ -27,5 +27,9 @@
     <delete id="deleteOrder" parameterType="int">
         DELETE FROM Orders WHERE OrderID = #{orderID}
     </delete>
+    
+    <select id="getOrderByUserIDAndProductID" resultType="org.zerock.domain.OrderVO">
+    	SELECT * FROM Orders WHERE UserID = #{userID} AND ProductID = #{productID}
+	</select>
 
 </mapper>

@@ -26,16 +26,20 @@
         <p>가격: ${product.price}원</p>
         <p>설명: ${product.description}</p>
         
-        <p>orderVO : ${orderVO}</p>
+        
         <p>productId : ${productId}</p>
-        <p>quantity : ${quantity}</p>
-        <p>shippingAddress : ${shippingAddress}</p>
-        <p>shippingPostalCode : ${shippingPostalCode}</p>
+        <p>수량 : ${quantity}</p>
+        <p>총 가격: <span id="totalPrice">${product.price * quantity} 원</span></p>
+        <p>배송받을 주소 : ${shippingAddress}</p>
+        <p>지역번호 : ${shippingPostalCode}</p>
     </div>
     <div>
-        
-        
-        
+        <!-- 결제하기 버튼 -->
+        <form action="/live/payment" method="post">
+            <input type="hidden" name="orderId" value="${orderId}">
+            <input type="hidden" name="amount" value="${product.price * quantity}">
+            <input type="submit" value="결제하기">
+        </form>
     </div>
 </body>
 </html>

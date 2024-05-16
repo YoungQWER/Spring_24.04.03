@@ -14,4 +14,6 @@ public interface OrderService {
     void deleteOrder(int orderID);
 
     List<OrderVO> getAllOrders();
+    
+    OrderVO getOrderByUserIDAndProductID(int userID, int productID);
 }

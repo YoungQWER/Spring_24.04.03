@@ -52,35 +52,54 @@ public class OrderController {
                              @RequestParam("quantity") int quantity,
                              Model model) {
 
+    	// 상품 정보 조회
+        ProductVO product = productService.getProduct(productId);
+        
         // 현재 로그인한 사용자의 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         
         // 사용자의 ID로 배송 주소와 우편번호 가져오기
         UserVO userVO = userservice.selectUserByUserName(username);
+        int userID = userVO.getUserID();
         String shippingAddress = userVO.getShippingAddress();
         String shippingPostalCode = userVO.getShippingPostalCode();
 
-        // OrderVO 객체 생성
-        OrderVO orderVO = OrderVO.builder()
-                .userID(userVO.getUserID())
-                .productID(productId)
-                .quantity(quantity)
-                .shippingAddress(shippingAddress)
-                .shippingPostalCode(shippingPostalCode)
-                .orderDate(new Timestamp(System.currentTimeMillis())) // 현재 시간으로 주문 일자 설정
-                .build();
+        // 이미 존재하는 주문 정보 가져오기
+        OrderVO existingOrder = orderservice.getOrder(userID);
         
-        orderservice.createOrder(orderVO);
+        if(existingOrder != null) {
+            // 기존 주문 정보 업데이트
+            existingOrder.setProductID(productId);
+            existingOrder.setQuantity(quantity);
+            existingOrder.setShippingAddress(shippingAddress);
+            existingOrder.setShippingPostalCode(shippingPostalCode);
+            existingOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
+
+            orderservice.updateOrder(existingOrder);
+        } else {
+            // 새로운 주문 생성
+            OrderVO newOrder = OrderVO.builder()
+                    .userID(userID)
+                    .productID(productId)
+                    .quantity(quantity)
+                    .shippingAddress(shippingAddress)
+                    .shippingPostalCode(shippingPostalCode)
+                    .orderDate(new Timestamp(System.currentTimeMillis())) // 현재 시간으로 주문 일자 설정
+                    .build();
+
+            orderservice.createOrder(newOrder);
+        }
         
-        // OrderVO 객체를 데이터베이스에 저장
-        //orderservice.updateOrder(orderVO); // OrderService에 주문 정보 저장하는 메서드를 구현해야 함
+        // 모델에 주문 정보 추가
         
         model.addAttribute("productId", productId);
         model.addAttribute("quantity", quantity);
         model.addAttribute("shippingAddress", shippingAddress);
         model.addAttribute("shippingPostalCode", shippingPostalCode);
+        model.addAttribute("product", product);
         
+        // 로깅
         log.info("productId: " + productId);
         log.info("quantity: " + quantity);
         log.info("shippingAddress: " + shippingAddress);
@@ -88,5 +107,6 @@ public class OrderController {
         
         return "/live/order";
     }
+
 
 }
