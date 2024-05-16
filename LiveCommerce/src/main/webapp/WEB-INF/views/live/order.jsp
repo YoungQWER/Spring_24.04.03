@@ -25,23 +25,17 @@
         <p>상품명: ${product.productName}</p>
         <p>가격: ${product.price}원</p>
         <p>설명: ${product.description}</p>
+        
+        <p>orderVO : ${orderVO}</p>
+        <p>productId : ${productId}</p>
+        <p>quantity : ${quantity}</p>
+        <p>shippingAddress : ${shippingAddress}</p>
+        <p>shippingPostalCode : ${shippingPostalCode}</p>
     </div>
     <div>
-        <!-- 주문 양식 -->
-        <form action="/live/payment" method="post">
-            <!-- 상품 정보를 hidden input으로 전달 -->
-            <input type="hidden" name="productId" value="${product.productId}">
-            
-            <!-- 주문 수량 입력 폼 -->
-            <label for="quantity">수량:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
-            
-            <!-- 총 가격 표시 -->
-            <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
-            
-            <!-- 결제 버튼 -->
-            <input type="submit" value="결제하기">
-        </form>
+        
+        
+        
     </div>
 </body>
 </html>

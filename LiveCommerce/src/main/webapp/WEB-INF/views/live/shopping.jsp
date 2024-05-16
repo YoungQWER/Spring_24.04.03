@@ -25,7 +25,7 @@
 </header>
 
 <main>
-    <h1>제품 상세 정보</h1>
+    
     <!-- 제품 상세 정보를 표시하는 코드를 여기에 추가하세요 -->
     <div class="product-details">
         <h2>${product.productName}</h2>
@@ -38,9 +38,11 @@
         <p>사용자 ID: ${currentUser}</p>
         
         <!-- 주문 양식 -->
-        <form action="/live/payment" method="post">
+        <form action="/live/order" method="post">
             <!-- 상품 정보를 hidden input으로 전달 -->
             <input type="hidden" name="productId" value="${product.productId}">
+            <input type="hidden" name="userID" value="${user.userID}">
+            
             
             <!-- 주문 수량 입력 폼 -->
             <label for="quantity">수량:</label>
