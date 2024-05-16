@@ -97,7 +97,7 @@
             <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
             <% if (request.isUserInRole("ROLE_USER")) { %>
                 <li><a href="/live/profile">내 프로필</a></li>
-                <li><a href="/cart">장바구니</a></li>
+                <li><a href="/cart/list">장바구니</a></li>
                 <form action="/customLogout" method="post">
                     <button type="submit">로그아웃</button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.CartProductVO;
 import org.zerock.domain.CartVO;
 
 import lombok.extern.log4j.Log4j;
@@ -64,4 +65,14 @@ public class CartMapperTest {
         mapper.deleteCart(cartID);
         log.info("장바구니 정보 삭제: CartID=" + cartID);
     }
+    
+    @Test
+    public void testSelectCartDetails() {
+    	List<CartProductVO> selectCartDetails = mapper.selectCartDetails(8);
+    	
+    	for(CartProductVO cart : selectCartDetails) {
+    		log.info(cart);
+    	}
+    }
+
 }

@@ -8,6 +8,11 @@
         INSERT INTO Users (Username, Email, Password, ShippingAddress, ShippingPostalCode)
         VALUES (#{username}, #{email}, #{password}, #{shippingAddress}, #{shippingPostalCode})
     </insert>
+    
+        <!-- 사용자 이름으로 사용자의 ID를 가져오는 쿼리 -->
+    <select id="getUserIDByUsername" resultType="int">
+        SELECT userID FROM Users WHERE username = #{username}
+    </select>
 
     <select id="getUser" resultType="org.zerock.domain.UserVO" parameterType="int">
         SELECT * FROM Users WHERE UserID = #{userId}

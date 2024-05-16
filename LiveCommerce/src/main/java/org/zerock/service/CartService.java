@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.domain.CartProductVO;
 import org.zerock.domain.CartVO;
 
 public interface CartService {
@@ -15,4 +16,8 @@ public interface CartService {
     void updateCart(CartVO cart);
 
     void deleteCart(int cartID);
+
+	List<CartVO> getCartByUserID(int userID);
+	
+    List<CartProductVO> getCartDetails(int userID);
 }

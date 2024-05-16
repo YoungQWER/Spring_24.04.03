@@ -25,6 +25,5 @@ public class CartVO {
  private int userID; // 사용자 ID
  private int productID; // 제품 ID
  private int quantity; // 수량
- 
  // 생성자, Getter 및 Setter
 }

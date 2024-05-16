@@ -73,6 +73,10 @@ public class UserServiceImpl implements UserService {
     public void updateUserEnabledByUsername(String username, int enabled) {
         userMapper.updateUserEnabledByUsername(username, enabled);
     }
+    @Override
+    public int getUserIDByUsername(String username) {
+        return userMapper.getUserIDByUsername(username);
+    }
 
 
 }

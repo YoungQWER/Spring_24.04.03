@@ -22,4 +22,6 @@ public interface UserService {
     UserVO selectUserByUserName(String username);
     
     void updateUserEnabledByUsername(@Param("username") String username, @Param("enabled") int enabled);
+
+	int getUserIDByUsername(String username);
 }

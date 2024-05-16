@@ -107,4 +107,15 @@ public class UserServiceImplTest {
         userService.updateUserEnabledByUsername(username, enabled);
 
 }
+    @Test
+    public void testGetUserIDByUsername() {
+        // Given
+        String username = "testa";
+      // When
+        int UserID = userService.getUserIDByUsername(username);
+        
+        log.info(UserID);
+
+    }
+    
 }

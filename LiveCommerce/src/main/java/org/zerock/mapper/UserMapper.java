@@ -24,4 +24,7 @@ public interface UserMapper {
     UserVO selectUserByUserName(@Param("username") String username);
 
 	void updateUserEnabledByUsername(@Param("username") String username, @Param("enabled") int enabled);
+
+    // 사용자 이름으로 사용자의 ID를 가져오는 메서드
+    int getUserIDByUsername(String username);
 }
