@@ -43,23 +43,19 @@ public class PaymentController {
     
     
     @PostMapping("/kakaoPay")
-    public String processKakaoPay(HttpServletRequest request) {
-    	
+    public String processKakaoPay(HttpServletRequest request, Model model) {
+       
         String productName = request.getParameter("productName");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String shippingAddress = request.getParameter("shippingAddress");
-        String shippingPostalCode = request.getParameter("shippingPostalCode");
-    	
-        
-        
-    	// 현재 로그인한 사용자의 정보 가져오기
+        int amount = Integer.parseInt(request.getParameter("amount"));
+       
+       // 현재 로그인한 사용자의 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         
         // 사용자 이름으로 사용자 정보 가져오기
         UserVO user = userService.selectUserByUserName(username);
 
+        
         // 사용자의 이메일과 이름 가져오기
         String buyer_Email = user.getEmail();
         String buyer_Name = user.getUsername();
@@ -67,11 +63,11 @@ public class PaymentController {
         log.info("구매자 이름: " + buyer_Name);
         log.info("구매자 이메일: " + buyer_Email);
         log.info("productName: " + productName);
-        log.info("가격: " + price);
-        log.info("수량: " + quantity);
-        log.info("배송 주소: " + shippingAddress);
-        log.info("우편번호: " + shippingPostalCode);
-//        log.info("amount: " + amount);
+        log.info("amount: " + amount);
+         
+         // productName과 amount 값을 모델에 추가하여 kakaoPay.jsp로 전달
+        model.addAttribute("productName", productName);
+        model.addAttribute("amount", amount);
         
         return "/kakaoPay";
     }

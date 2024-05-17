@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-    String name = (String)request.getAttribute("name");
-    String email = (String)request.getAttribute("email");
-    String phone = (String)request.getAttribute("phone");
-    String address = (String)request.getAttribute("address");
-    /* int totalPrice = (int)request.getAttribute("totalPrice");     */
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +19,12 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'KH Books 도서 결제',
-            amount : 100<%-- <%=totalPrice%> --%>,
-            buyer_email : '<%=email%>',
-            buyer_name : '<%=name%>',
-            buyer_tel : '<%=phone%>',
-            buyer_addr : '<%=address%>',
-            buyer_postcode : '123-456',
+            name : '${productName}',
+            amount : '${amount}',
+            buyer_email : '${Email}',
+            buyer_name : '${Name}',
+            buyer_addr : '${ShippingAddress}',
+            buyer_postcode : '${ShippingPostalCode}',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
