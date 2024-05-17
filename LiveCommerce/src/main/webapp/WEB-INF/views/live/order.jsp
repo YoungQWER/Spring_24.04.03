@@ -5,16 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <title>주문 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // 수량이 변경될 때 호출되는 함수
         function updatePrice() {
-            // 수량과 가격을 가져옴
             var quantity = document.getElementById("quantity").value;
             var price = ${product.price};
-            
-            // 가격을 계산하여 표시
             var totalPrice = quantity * price;
             document.getElementById("totalPrice").innerText = totalPrice + "원";
+        }
+
+        function requestKakaoPay() {
+            $.ajax({
+                url: '/live/kakaoPay',
+                type: 'post',
+                data: {
+                    orderId: ${orderId},
+                    amount: ${product.price * quantity}
+                },
+                success: function(response) {
+                    window.location.href = response.next_redirect_pc_url;
+                },
+                error: function(error) {
+                    alert('결제 준비 중 오류가 발생했습니다.');
+                }
+            });
         }
     </script>
 </head>
@@ -25,7 +39,6 @@
         <p>상품명: ${product.productName}</p>
         <p>가격: ${product.price}원</p>
         <p>설명: ${product.description}</p>
-        
         <p>productId : ${productId}</p>
         <p>수량 : ${quantity}</p>
         <p>총 가격: <span id="totalPrice">${product.price * quantity} 원</span></p>
@@ -33,12 +46,7 @@
         <p>지역번호 : ${shippingPostalCode}</p>
     </div>
     <div>
-        <!-- 결제하기 버튼 -->
-        <form action="/live/payment" method="post">
-            <input type="hidden" name="orderId" value="${orderId}">
-            <input type="hidden" name="amount" value="${product.price * quantity}">
-            <input type="submit" value="결제하기">
-        </form>
+        <button type="button" onclick="requestKakaoPay()">결제하기</button>
     </div>
 </body>
 </html>

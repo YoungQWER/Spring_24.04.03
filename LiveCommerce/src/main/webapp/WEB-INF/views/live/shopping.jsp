@@ -37,40 +37,38 @@
         <h3>현재 로그인한 사용자 정보</h3>
         <p>사용자 ID: ${currentUser}</p>
         
+        <!-- 주문 수량 입력 폼 -->
+        <label for="quantity">수량:</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
+        
+        <!-- 총 가격 표시 -->
+        <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
+        
         <!-- 주문 양식 -->
         <form action="/live/order" method="post">
             <!-- 상품 정보를 hidden input으로 전달 -->
             <input type="hidden" name="productId" value="${product.productId}">
             <input type="hidden" name="userID" value="${user.userID}">
-            
-            <!-- 주문 수량 입력 폼 -->
-            <label for="quantity">수량:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
-            
-            <!-- 총 가격 표시 -->
-            <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
+            <!-- 수량 필드 -->
+            <input type="hidden" name="quantity" id="orderQuantity">
             
             <!-- 결제 버튼 -->
-            <input type="submit" value="주문하기">
+            <input type="submit" value="주문하기" onclick="document.getElementById('orderQuantity').value = document.getElementById('quantity').value;">
         </form>
         
         <!-- 장바구니 추가 폼 -->
-		<form action="/cart/add" method="post">
-		    <!-- 상품 정보를 hidden input으로 전달 -->
-		    <input type="hidden" name="productId" value="${product.productId}">
-		    <input type="hidden" name="userID" value="${user.userID}">
-		    
-		    <!-- 장바구니에 추가할 수량 입력 폼 -->
-		    <label for="quantity">수량:</label>
-		    <input type="number" id="quantity" name="quantity" min="1" value="1">
-		    
-		    <!-- 장바구니에 추가 버튼 -->
-		    <input type="submit" value="장바구니 추가">
-		</form>
-
+        <form action="/cart/add" method="post">
+            <!-- 상품 정보를 hidden input으로 전달 -->
+            <input type="hidden" name="productId" value="${product.productId}">
+            <input type="hidden" name="userID" value="${user.userID}">
+            <!-- 수량 필드 -->
+            <input type="hidden" name="quantity" id="cartQuantity">
+            
+            <!-- 장바구니에 추가 버튼 -->
+            <input type="submit" value="장바구니 추가" onclick="document.getElementById('cartQuantity').value = document.getElementById('quantity').value;">
+        </form>
     </div>
 </main>
-
 
 <footer>
     <!-- 웹사이트 푸터 정보를 여기에 추가하세요 -->

@@ -32,7 +32,7 @@ public class CartServiceImpl implements CartService {
         // 여기서 다른 비즈니스 로직 처리 가능
     }
 
-    @Override 
+    @Override
     public void updateCart(CartVO cart) {
         cartMapper.updateCart(cart);
         // 여기서 다른 비즈니스 로직 처리 가능
@@ -43,14 +43,14 @@ public class CartServiceImpl implements CartService {
         cartMapper.deleteCart(cartID);
         // 여기서 다른 비즈니스 로직 처리 가능
     }
+
     @Override
     public List<CartVO> getCartByUserID(int userID) {
         return cartMapper.getCartByUserID(userID);
     }
+
     @Override
     public List<CartProductVO> getCartDetails(int userID) {
         return cartMapper.selectCartDetails(userID);
     }
-    }
-
-
+}
