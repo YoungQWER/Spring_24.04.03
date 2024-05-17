@@ -55,14 +55,19 @@
         </form>
         
         <!-- 장바구니 추가 폼 -->
-        <form action="/cart/add" method="post">
-            <!-- 상품 정보를 hidden input으로 전달 -->
-            <input type="hidden" name="productId" value="${product.productId}">
-            <input type="hidden" name="userID" value="${user.userID}">
-            
-            <!-- 장바구니에 추가 버튼 -->
-            <input type="submit" value="장바구니 추가">
-        </form>
+		<form action="/cart/add" method="post">
+		    <!-- 상품 정보를 hidden input으로 전달 -->
+		    <input type="hidden" name="productId" value="${product.productId}">
+		    <input type="hidden" name="userID" value="${user.userID}">
+		    
+		    <!-- 장바구니에 추가할 수량 입력 폼 -->
+		    <label for="quantity">수량:</label>
+		    <input type="number" id="quantity" name="quantity" min="1" value="1">
+		    
+		    <!-- 장바구니에 추가 버튼 -->
+		    <input type="submit" value="장바구니 추가">
+		</form>
+
     </div>
 </main>
 

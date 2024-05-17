@@ -58,67 +58,60 @@ public class CartController {
         return "/live/cart";
     }
     
-    @PostMapping("/add")
-    public String placeOrder(@RequestParam("productId") List<Integer> productIds,
-                             @RequestParam("quantities") List<Integer> quantities,
-                             Model model) {
+//    @PostMapping("/add")
+//    public String addToCart(@RequestParam("productId") List<Integer> productIds,
+//                            @RequestParam("quantity") List<Integer> quantities,
+//                            Model model) {
+//
+//        // 현재 로그인한 사용자의 정보 가져오기
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String username = authentication.getName();
+//        
+//        // 사용자의 ID로 배송 주소와 우편번호 가져오기
+//        UserVO userVO = userService.selectUserByUserName(username);
+//        int userID = userVO.getUserID();
+//        String shippingAddress = userVO.getShippingAddress();
+//        String shippingPostalCode = userVO.getShippingPostalCode();
+//
+//        // 모든 제품에 대해 장바구니에 추가
+//        for (int i = 0; i < productIds.size(); i++) {
+//            int productId = productIds.get(i);
+//            int quantity = quantities.get(i);
+//
+//            // 장바구니에 추가할 상품 정보 조회
+//            ProductVO product = productservice.getProduct(productId);
+//
+//            // 장바구니에 이미 존재하는 상품인지 확인
+//            CartProductVO existingProduct = cartService.getCartProduct(userID, productId);
+//
+//            if (existingProduct != null) {
+//                // 이미 존재하는 상품이면 수량만 업데이트
+//                existingProduct.setQuantity(existingProduct.getQuantity() + quantity);
+//                cartService.updateCart(existingProduct);
+//            } else {
+//                // 새로운 상품인 경우 장바구니에 추가
+//                CartProductVO newProduct = CartProductVO.builder()
+//                        .userID(userID)
+//                        .productID(productId)
+//                        .quantity(quantity)
+//                        .build();
+//                cartService.addToCart(newProduct);
+//            }
+//            
+//            // 로깅
+//            log.info("productId: " + productId);
+//            log.info("quantity: " + quantity);
+//        }
+//
+//        // 모델에 추가할 데이터 설정
+//        model.addAttribute("productIds", productIds);
+//        model.addAttribute("quantities", quantities);
+//        model.addAttribute("shippingAddress", shippingAddress);
+//        model.addAttribute("shippingPostalCode", shippingPostalCode);
+//
+//        // 장바구니 페이지로 리다이렉트
+//        return "redirect:/cart/list";
+//    }
 
-        // 현재 로그인한 사용자의 정보 가져오기
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        
-        // 사용자의 ID로 배송 주소와 우편번호 가져오기
-        UserVO userVO = userService.selectUserByUserName(username);
-        int userID = userVO.getUserID();
-        String shippingAddress = userVO.getShippingAddress();
-        String shippingPostalCode = userVO.getShippingPostalCode();
-
-        // 모든 제품에 대해 주문 처리
-        for (int i = 0; i < productIds.size(); i++) {
-            int productId = productIds.get(i);
-            int quantity = quantities.get(i);
-
-            // 상품 정보 조회
-            ProductVO product = productservice.getProduct(productId);
-
-            // 이미 존재하는 주문 정보 가져오기
-            OrderVO existingOrder = orderservice.getOrderByUserIDAndProductID
-            		(userID, productId);
-
-            if(existingOrder != null) {
-                // 기존 주문 정보 업데이트
-                existingOrder.setQuantity(existingOrder.getQuantity() + quantity);
-                existingOrder.setShippingAddress(shippingAddress);
-                existingOrder.setShippingPostalCode(shippingPostalCode);
-                existingOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
-
-                orderservice.updateOrder(existingOrder);
-            } else {
-                // 새로운 주문 생성
-                OrderVO newOrder = OrderVO.builder()
-                        .userID(userID)
-                        .productID(productId)
-                        .quantity(quantity)
-                        .shippingAddress(shippingAddress)
-                        .shippingPostalCode(shippingPostalCode)
-                        .orderDate(new Timestamp(System.currentTimeMillis())) // 현재 시간으로 주문 일자 설정
-                        .build();
-
-                orderservice.createOrder(newOrder);
-            }
-            
-            // 로깅
-            log.info("productId: " + productId);
-            log.info("quantity: " + quantity);
-        }
-
-        // 모델에 주문 정보 추가
-        model.addAttribute("productIds", productIds);
-        model.addAttribute("quantities", quantities);
-        model.addAttribute("shippingAddress", shippingAddress);
-        model.addAttribute("shippingPostalCode", shippingPostalCode);
-
-        return "/live/cart";
-    }
 
 }

@@ -26,7 +26,6 @@
         <p>가격: ${product.price}원</p>
         <p>설명: ${product.description}</p>
         
-        
         <p>productId : ${productId}</p>
         <p>수량 : ${quantity}</p>
         <p>총 가격: <span id="totalPrice">${product.price * quantity} 원</span></p>
