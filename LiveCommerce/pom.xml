@@ -88,11 +88,11 @@
       
        <!-- HTTP -->
       <dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpclient</artifactId>
-    <version>4.5.13</version> <!-- 사용 가능한 최신 버전으로 변경 -->
-</dependency>
- <!-- HTTP -->
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version> <!-- 사용 가능한 최신 버전으로 변경 -->
+	  </dependency>
+ 	<!-- HTTP -->
             
       <!-- AspectJ -->
       <dependency>
@@ -272,7 +272,6 @@
           <version>5.2.7.RELEASE</version>
       </dependency>
       <!-- End 시큐리티 -->
-      
       
    </dependencies>
     <build>

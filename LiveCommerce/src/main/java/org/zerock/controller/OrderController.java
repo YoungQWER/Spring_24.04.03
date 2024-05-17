@@ -36,7 +36,7 @@ public class OrderController {
         this.userservice = userservice;
     }
 
-    @GetMapping("/order")	
+    @GetMapping("/order")   
     public String showOrderPage(@RequestParam("productId") int productId, Model model) {
         // productId를 사용하여 상품 정보를 조회합니다.
         ProductVO product = productService.getProduct(productId);
@@ -52,7 +52,7 @@ public class OrderController {
                              @RequestParam("quantity") int quantity,
                              Model model) {
 
-    	// 상품 정보 조회
+       // 상품 정보 조회
         ProductVO product = productService.getProduct(productId);
         
         // 현재 로그인한 사용자의 정보 가져오기
@@ -90,6 +90,9 @@ public class OrderController {
 
             orderservice.createOrder(newOrder);
         }
+        // 주문 정보를 모델에 추가
+        OrderVO order = orderservice.getOrder(userID);
+        model.addAttribute("order", order);
         
         // 모델에 주문 정보 추가
         
@@ -107,6 +110,7 @@ public class OrderController {
         
         return "/live/order";
     }
+    
 
 
 }
