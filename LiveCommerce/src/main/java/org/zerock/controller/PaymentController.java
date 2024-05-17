@@ -45,6 +45,14 @@ public class PaymentController {
     @PostMapping("/kakaoPay")
     public String processKakaoPay(HttpServletRequest request) {
     	
+        String productName = request.getParameter("productName");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String shippingAddress = request.getParameter("shippingAddress");
+        String shippingPostalCode = request.getParameter("shippingPostalCode");
+    	
+        
+        
     	// 현재 로그인한 사용자의 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -58,7 +66,12 @@ public class PaymentController {
 
         log.info("구매자 이름: " + buyer_Name);
         log.info("구매자 이메일: " + buyer_Email);
-        log.info("totalPrice: " + totalPrice);
+        log.info("productName: " + productName);
+        log.info("가격: " + price);
+        log.info("수량: " + quantity);
+        log.info("배송 주소: " + shippingAddress);
+        log.info("우편번호: " + shippingPostalCode);
+//        log.info("amount: " + amount);
         
         return "/kakaoPay";
     }

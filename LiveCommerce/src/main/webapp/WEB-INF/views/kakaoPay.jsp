@@ -5,7 +5,7 @@
     String email = (String)request.getAttribute("email");
     String phone = (String)request.getAttribute("phone");
     String address = (String)request.getAttribute("address");
-    /* int totalPrice = (int)request.getAttribute("totalPrice"); */    
+    /* int totalPrice = (int)request.getAttribute("totalPrice");     */
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
     <script>
     $(function(){
         var IMP = window.IMP; // 생략가능
-        IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.init('imp26828762'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
         
         IMP.request_pay({

@@ -29,6 +29,7 @@
 	    <input type="hidden" name="amount" value="${product.price * quantity}">
 	    <input type="hidden" name="buyerEmail" value="${user.email}">
 	    <input type="hidden" name="buyerName" value="${user.username}">
+	    <input type="hidden" name="productName" value="${product.productName}">
 	    <!-- 기타 필요한 숨은 입력 필드를 여기에 추가하세요 -->
 	    <button id="requestPaymentBtn" type="submit">결제하기</button>
 	</form>
