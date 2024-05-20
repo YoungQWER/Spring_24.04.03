@@ -6,17 +6,34 @@
     <meta charset="UTF-8">
     <title>제품 상세 정보</title>
     <!-- 여기에 필요한 CSS 및 JavaScript 파일을 추가하세요 -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
     <script>
-        // 수량이 변경될 때 호출되는 함수
-        function updatePrice() {
-            // 수량과 가격을 가져옴
-            var quantity = document.getElementById("quantity").value;
-            var price = ${product.price};
+        $(document).ready(function() {
+            // 채팅 기능 추가
+            let sock = new SockJS("http://localhost:8181");
+            sock.onmessage = onMessage;
+            sock.onclose = onClose;
+            // 메시지 전송
+            function sendMessage() {
+                sock.send($("#message").val());
+            }
+            // 서버로부터 메시지를 받았을 때
+            function onMessage(msg) {
+                var data = msg.data;
+                $("#messageArea").append(data + "<br/>");
+            }
+            // 서버와 연결을 끊었을 때
+            function onClose(evt) {
+                $("#messageArea").append("연결 끊김");
+            }
             
-            // 가격을 계산하여 표시
-            var totalPrice = quantity * price;
-            document.getElementById("totalPrice").innerText = totalPrice + "원";
-        }
+            // 채팅 전송 버튼 이벤트 처리
+            $("#sendBtn").click(function() {
+                sendMessage();
+                $('#message').val('');
+            });
+        });
     </script>
 </head>
 <body>
@@ -68,6 +85,11 @@
             <input type="submit" value="장바구니 추가" onclick="document.getElementById('cartQuantity').value = document.getElementById('quantity').value;">
         </form>
     </div>
+    
+    <!-- 채팅 입력 폼 -->
+    <input type="text" id="message" />
+    <input type="button" id="sendBtn" value="submit"/>
+    <div id="messageArea"></div>
 </main>
 
 <footer>

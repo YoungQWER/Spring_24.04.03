@@ -51,10 +51,7 @@
       <security:csrf disabled="true"/>
         
    </security:http>
-    
-    
    
-
     <!-- 사용자 권한 설정 -->
     <security:authentication-manager>
         <!-- In-memory 사용자 설정 -->

@@ -12,7 +12,7 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>선택</th>
+                    <th><input type="checkbox" id="selectAllCheckbox"> 전체 선택</th>
                     <th>상품명</th>
                     <th>가격</th>
                     <th>수량</th>
@@ -50,23 +50,27 @@
     </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-	    $(document).ready(function() {
-	        $('#requestPaymentBtn').click(function() {
-	            var totalPrice = 0;
-	            var selectedProducts = [];
-	            $('.productCheckbox:checked').each(function() {
-	                var productName = $(this).data('product-name');
-	                var price = $(this).data('total-price');
-	                totalPrice += parseFloat(price); // 총 가격 누적
-	                selectedProducts.push(productName);
-	            });
-	            $('#selectedProducts').val(selectedProducts.join(';'));
-	            $('#selectedAmount').val(totalPrice.toFixed(2)); // 총 가격을 소수점 2자리까지 반올림하여 전송
-	            $('#cartForm').submit();
-	        });
-	    });
-	</script>
+    <script>
+        $(document).ready(function() {
+            // 전체 선택 체크박스 클릭 시 모든 상품 체크박스 상태 변경
+            $('#selectAllCheckbox').click(function() {
+                $('.productCheckbox').prop('checked', $(this).prop('checked'));
+            });
 
+            $('#requestPaymentBtn').click(function() {
+                var totalPrice = 0;
+                var selectedProducts = [];
+                $('.productCheckbox:checked').each(function() {
+                    var productName = $(this).data('product-name');
+                    var price = $(this).data('total-price');
+                    totalPrice += parseFloat(price); // 총 가격 누적
+                    selectedProducts.push(productName);
+                });
+                $('#selectedProducts').val(selectedProducts.join(';'));
+                $('#selectedAmount').val(totalPrice.toFixed(2)); // 총 가격을 소수점 2자리까지 반올림하여 전송
+                $('#cartForm').submit();
+            });
+        });
+    </script>
 </body>
 </html>
