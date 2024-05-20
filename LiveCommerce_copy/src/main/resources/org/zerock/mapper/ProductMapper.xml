@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ProductMapper">
+
+    <!-- 제품 등록 -->
+    <insert id="insertProduct" parameterType="org.zerock.domain.ProductVO">
+        INSERT INTO Products (ProductName, Description, Price, Photo)
+        VALUES (#{productName}, #{description}, #{price}, #{photo})
+    </insert>
+    
+    <!-- 제품 조회 -->
+    <select id="selectProduct" resultType="org.zerock.domain.ProductVO" parameterType="int">
+        SELECT * FROM Products WHERE ProductID = #{productID}
+    </select>
+    
+    <!-- 모든 제품 조회 -->
+    <select id="selectAllProducts" resultType="org.zerock.domain.ProductVO">
+        SELECT * FROM Products
+    </select>
+    
+    <!-- categoryId로 해당 카테고리에 속하는 상품을 가져오는 쿼리 -->
+    <select id="getProductsByCategory" resultType="org.zerock.domain.ProductVO" parameterType="int">
+        SELECT * FROM Products WHERE CategoryID = #{categoryId}
+    </select>
+    
+    <!-- 제품 수정 -->
+    <update id="updateProduct" parameterType="org.zerock.domain.ProductVO">
+        UPDATE Products
+        SET ProductName = #{productName}, Description = #{description}, Price = #{price}, Photo = #{photo}
+        WHERE ProductID = #{productID}
+    </update>
+    
+    <!-- 제품 삭제 -->
+    <delete id="deleteProduct" parameterType="int">
+        DELETE FROM Products WHERE ProductID = #{productID}
+    </delete>
+    
+    <!-- 검색 조건을 설정하는 SQL 구문 -->
+	<sql id="criterial">
+	    <trim prefix="(" suffix=") and" prefixOverrides="AND |OR ">
+	        <if test="cri.productName != null and cri.productName.trim() != ''">
+	            productName like '%' || #{cri.productName} || '%'
+	        </if>
+	        <if test="cri.keyword != null and cri.keyword.trim() != ''">
+	            (description like '%' || #{cri.keyword} || '%'
+	            or productName like '%' || #{cri.keyword} || '%')
+	        </if>
+	    </trim>
+	</sql>
+  
+	<!-- 페이징 처리가 된 상품 목록을 가져오는 SQL 구문 -->
+<select id="getListWithPaging" resultType="org.zerock.domain.ProductVO">
+    <![CDATA[
+    SELECT *
+    FROM (
+        SELECT rownum AS rnum, p.productId, p.productName, p.description, p.price, p.photo
+        FROM Products p
+        <where>
+            <if test="cri.productName != null and cri.productName != ''">
+                AND productName like CONCAT('%', #{cri.productName}, '%')
+            </if>
+        </where>
+        ORDER BY ProductID
+    ) temp
+    WHERE rnum BETWEEN #{cri.startRow} AND #{cri.endRow}
+    ]]>
+</select>
+
+
+
+
+
+
+    <!-- 총 상품 수를 가져오는 SQL 구문 -->
+    <select id="getTotalCount" resultType="int">
+        select count(*) from Products 
+        where
+        <include refid="criterial"></include>
+        productId > 0
+    </select>
+    
+</mapper>

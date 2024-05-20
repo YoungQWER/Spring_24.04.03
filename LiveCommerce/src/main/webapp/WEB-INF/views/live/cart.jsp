@@ -8,35 +8,65 @@
 <body>
     <h2>장바구니</h2>
     
-    <table border="1">
-        <thead>
-            <tr>
-                <th>상품명</th>
-                <th>가격</th>
-                <th>수량</th>
-                <th>총 가격</th>
-                <!-- 기타 필요한 컬럼들 -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 장바구니 정보를 반복해서 표시 -->
-            <c:forEach items="${cartDetails}" var="cartItem">
+    <form id="cartForm" action="/live/checkout" method="post">
+        <table border="1">
+            <thead>
                 <tr>
-                    <!-- 상품명 -->
-                    <td>${cartItem.productName}</td>
-                    <!-- 가격 -->
-                    <td>${cartItem.price}</td>
-                    <!-- 수량 -->
-                    <td>${cartItem.quantity}</td>
-                    <!-- 총 가격 = 가격 * 수량 -->
-                    <td>${cartItem.price * cartItem.quantity}</td>
-                    <!-- 기타 필요한 컬럼들 -->
+                    <th>선택</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>수량</th>
+                    <th>총 가격</th>
                 </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <c:set var="totalPrice" value="0" />
+                <c:forEach items="${cartDetails}" var="cartItem">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="productCheckbox" 
+                                   data-product-name="${cartItem.productName}"
+                                   data-total-price="${cartItem.price * cartItem.quantity}">
+                        </td>
+                        
+                        <td>${cartItem.productName}</td>
+                        <td>${cartItem.price}</td>
+                        <td>${cartItem.quantity}</td>
+                        <td>${cartItem.price * cartItem.quantity}</td>
+                    </tr>
+                    <%-- 각 상품의 총 가격을 totalPrice에 누적 --%>
+                    <c:set var="totalPrice" value="${totalPrice + (cartItem.price * cartItem.quantity)}" />
+                </c:forEach>
+            </tbody>
+        </table>
 
-    <!-- 로그인한 사용자의 ID -->
-    <p>사용자 ID: ${userID}</p>
+        <!-- 선택된 상품 결제하기 버튼 -->
+        <button id="requestPaymentBtn" type="button">선택된 상품 결제하기</button>
+
+        <%-- 선택된 상품 정보를 전송하기 위한 hidden 필드들 --%>
+        <input type="hidden" name="totalAmount" value="${totalPrice}">
+        <input type="hidden" name="selectedProducts" id="selectedProducts">
+        <input type="hidden" name="selectedAmount" id="selectedAmount">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	        $('#requestPaymentBtn').click(function() {
+	            var totalPrice = 0;
+	            var selectedProducts = [];
+	            $('.productCheckbox:checked').each(function() {
+	                var productName = $(this).data('product-name');
+	                var price = $(this).data('total-price');
+	                totalPrice += parseFloat(price); // 총 가격 누적
+	                selectedProducts.push(productName);
+	            });
+	            $('#selectedProducts').val(selectedProducts.join(';'));
+	            $('#selectedAmount').val(totalPrice.toFixed(2)); // 총 가격을 소수점 2자리까지 반올림하여 전송
+	            $('#cartForm').submit();
+	        });
+	    });
+	</script>
+
 </body>
 </html>

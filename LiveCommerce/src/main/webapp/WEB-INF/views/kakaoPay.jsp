@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
                 jQuery.ajax({
-                    url: "/live/paySuccess", //cross-domain error가 발생하지 않도록 주의해주세요
+                    url: "/live/complete", //cross-domain error가 발생하지 않도록 주의해주세요
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -50,7 +51,6 @@
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                    	alert('결제가 제대로 이루어지지 않았습니다.');
                     }
                 });
                 //성공시 이동할 페이지
