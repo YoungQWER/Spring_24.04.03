@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ReviewMapper">
+
+    <resultMap id="reviewResultMap" type="org.zerock.domain.ReviewVO">
+        <id property="reviewID" column="ReviewID"/>
+        <result property="userID" column="UserID"/>
+        <result property="productID" column="ProductID"/>
+        <result property="rating" column="Rating"/>
+        <result property="comment" column="Comment"/>
+        <result property="reviewDate" column="ReviewDate"/>
+    </resultMap>
+
+    <select id="getReview" resultMap="reviewResultMap">
+        SELECT * FROM Reviews WHERE ReviewID = #{reviewID}
+    </select>
+
+    <select id="getAllReviews" resultMap="reviewResultMap">
+        SELECT * FROM Reviews
+    </select>
+
+    <insert id="insertReview" parameterType="org.zerock.domain.ReviewVO">
+        INSERT INTO Reviews (UserID, ProductID, Rating, Comment, ReviewDate)
+        VALUES (#{userID}, #{productID}, #{rating}, #{comment}, #{reviewDate})
+    </insert>
+
+    <update id="updateReview" parameterType="org.zerock.domain.ReviewVO">
+        UPDATE Reviews
+        SET UserID = #{userID}, ProductID = #{productID}, Rating = #{rating}, Comment = #{comment}, ReviewDate = #{reviewDate}
+        WHERE ReviewID = #{reviewID}
+    </update>
+
+    <delete id="deleteReview">
+        DELETE FROM Reviews WHERE ReviewID = #{reviewID}
+    </delete>
+
+</mapper>

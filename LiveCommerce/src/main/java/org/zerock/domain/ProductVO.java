@@ -3,10 +3,12 @@ package org.zerock.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 //제품 정보 VO 클래스
 public class ProductVO {

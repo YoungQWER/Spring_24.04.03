@@ -11,7 +11,7 @@ import org.zerock.domain.ProductVO;
 import org.zerock.domain.UserVO; // 사용자 정보를 담는 UserVO 클래스 import
 import org.zerock.service.ProductService;
 import org.zerock.service.UserService;
-
+import org.zerock.service.LiveChatService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -21,6 +21,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final UserService userService;
+    private final LiveChatService liveChatService;
 
     @GetMapping("/product")
     public String showProductDetails(@RequestParam("id") int productId, Model model) {
@@ -31,12 +32,18 @@ public class ProductController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int currentUser = userService.getUserIDByUsername(authentication.getName());
 
+        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = authentication1.getName(); // 현재 사용자의 이름 가져오기
+
         // 제품 정보와 현재 사용자 정보를 모델에 추가하여 JSP 페이지로 전달합니다.
         model.addAttribute("product", product);
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUsername", currentUsername);
+
+        // 채팅 기록을 가져와 모델에 추가
+        model.addAttribute("chatHistory", liveChatService.getChatHistoryByProductID(productId));
 
         // 해당하는 JSP 페이지의 경로를 반환합니다.
         return "/live/shopping"; // shopping.jsp와 같은 JSP 페이지의 이름을 반환합니다.
     }
-
 }

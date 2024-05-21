@@ -16,7 +16,7 @@ CREATE TABLE LiveChat (
 );*/
 
 @Data
-@AllArgsConstructor
+
 @Builder
 //라이브 채팅 VO 클래스
 public class LiveChatVO {
@@ -24,6 +24,8 @@ public class LiveChatVO {
  private int userID; // 사용자 ID
  private String message; // 채팅 메시지
  private Timestamp chatTime; // 채팅 시간
- 
+ private int productID;
+ private String username; // 사용자 이름 필드 추가
  // 생성자, Getter 및 Setter
 }
+

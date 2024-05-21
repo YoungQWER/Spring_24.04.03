@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.OrderMapper">
+
+    <insert id="createOrder" parameterType="org.zerock.domain.OrderVO">
+        INSERT INTO Orders (UserID, ProductID, Quantity, ShippingAddress, ShippingPostalCode)
+        VALUES (#{userID}, #{productID}, #{quantity}, #{shippingAddress}, #{shippingPostalCode})
+    </insert>
+
+    <select id="getOrder" resultType="org.zerock.domain.OrderVO" parameterType="int">
+        SELECT * FROM Orders WHERE OrderID = #{orderID}
+    </select>
+
+    <select id="getAllOrders" resultType="org.zerock.domain.OrderVO">
+        SELECT * FROM Orders
+    </select>
+
+    <update id="updateOrder" parameterType="org.zerock.domain.OrderVO">
+        UPDATE Orders
+        SET UserID = #{userID}, ProductID = #{productID}, Quantity = #{quantity}, 
+            ShippingAddress = #{shippingAddress}, ShippingPostalCode = #{shippingPostalCode}
+        WHERE OrderID = #{orderID}
+    </update>
+
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM Orders WHERE OrderID = #{orderID}
+    </delete>
+    
+    <select id="getOrderByUserIDAndProductID" resultType="org.zerock.domain.OrderVO">
+    	SELECT * FROM Orders WHERE UserID = #{userID} AND ProductID = #{productID}
+	</select>
+	
+	
+
+</mapper>
