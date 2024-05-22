@@ -4,8 +4,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>라이브 커머스</title>
     <style>
+    	.logo-link {
+		    color: #fff; /* 링크 색상 */
+		    text-decoration: none; /* 밑줄 제거 */
+		}
+    	
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -85,7 +89,7 @@
 </head>
 <body>
 <header>
-    <h1>라이브 커머스</h1>
+    <h1><a href="/live/main" class="logo-link">라이브 커머스</a></h1>
     <nav class="main-nav">
         <ul>
             <%-- 카테고리 목록 표시 --%>
