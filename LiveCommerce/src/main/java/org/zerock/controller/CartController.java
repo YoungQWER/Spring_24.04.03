@@ -115,9 +115,9 @@ public class CartController {
         // 장바구니 페이지로 리다이렉트
         return "redirect:/cart/list";
     }
-   @DeleteMapping("/remove")
-    public String removeProductFromCart(@RequestParam("cartId") int cartId) {
-        cartService.deleteCart(cartId);
-        return "redirect:/cart"; // 장바구니 페이지로 리디렉션
+    @PostMapping("/remove")
+    public String removeProductFromCart(@RequestParam("cartID") int cartID) {
+        cartService.deleteCart(cartID);
+        return "redirect:/cart/list"; // 장바구니 페이지로 리디렉션
     }
 }

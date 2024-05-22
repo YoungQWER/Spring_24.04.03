@@ -60,7 +60,7 @@ public class PaymentController {
         // 선택된 상품의 총 가격을 부동 소수점 숫자로 파싱
         double totalPrice = Double.parseDouble(selectedAmount);
         
-     // 현재 로그인한 사용자의 정보 가져오기
+        // 현재 로그인한 사용자의 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         

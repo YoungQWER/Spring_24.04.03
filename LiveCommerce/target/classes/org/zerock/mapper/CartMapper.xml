@@ -44,6 +44,15 @@
 	    JOIN Products p ON c.productID = p.productID
 	    WHERE c.userID = #{userID}
 	</select>
+	
+	<delete id="deleteProductFromCart" parameterType="org.zerock.domain.CartProductVO">
+    DELETE FROM Cart
+    WHERE userID = #{userID} AND productID = #{productID}
+</delete>
+	
+	 <delete id="deleteByProductName">
+        DELETE FROM Cart WHERE productName = #{productName}
+    </delete>
 
 
 </mapper>

@@ -11,26 +11,95 @@
     <!-- 여기에 필요한 CSS 및 JavaScript 파일을 추가하세요 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <style>
-        /* 간단한 채팅창 스타일링 */
-        #chatContainer {
-            border: 1px solid #ccc;
+<style>
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #333;
+            color: #fff;
             padding: 10px;
-            width: 300px;
-            height: 400px;
-            overflow-y: scroll;
+            text-align: center;
         }
+
+        /* 메인 콘텐츠 스타일 */
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        /* 제품 상세 정보 영역 스타일 */
+        .product-details {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 제품 이미지 스타일 */
+        .product-details img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        /* 주문 폼 스타일 */
+        .order-form {
+            margin-top: 20px;
+        }
+
+        /* 채팅 영역 스타일 */
+        #chatContainer {
+            width: 35%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 메시지 영역 스타일 */
         #messageArea {
-            height: 80%;
+            height: 250px;
             overflow-y: scroll;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
+
+        /* 입력 필드 및 버튼 스타일 */
         #messageInput {
-            width: 80%;
+            width: calc(100% - 70px);
+            padding: 5px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
+
         #sendBtn {
-            width: 18%;
+            width: 60px;
+            padding: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #sendBtn:hover {
+            background-color: #0056b3;
         }
     </style>
+
 	<script>
 	    var sock;
 	    var stompClient;
@@ -122,37 +191,20 @@
         <p>사용자 이름: ${currentUsername}</p>
         <p>제품번호 : ${product.productId}</p>
 
-        <!-- 주문 수량 입력 폼 -->
-        <label for="quantity">수량:</label>
-        <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
-
         <!-- 총 가격 표시 -->
         <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
 
-		<!-- 주문 양식 -->
-		<form action="/live/order" method="post">
+		<form method="post">
 		    <!-- 상품 정보를 hidden input으로 전달 -->
 		    <input type="hidden" name="productId" value="${product.productId}">
 		    <input type="hidden" name="userId" value="${currentUser}">
 		    <!-- 수량 필드 -->
 		    <label for="quantity">수량:</label>
 		    <input type="number" id="quantity" name="quantity" min="1" value="1">
-		
-		    <!-- 결제 버튼 -->
-		    <input type="submit" value="주문하기">
-		</form>
-		
-		<!-- 장바구니 추가 폼 -->
-		<form action="/cart/add" method="post">
-		    <!-- 상품 정보를 hidden input으로 전달 -->
-		    <input type="hidden" name="productId" value="${product.productId}">
-		    <input type="hidden" name="userId" value="${currentUser}">
-		    <!-- 수량 필드 -->
-		    <label for="cartQuantity">수량:</label>
-		    <input type="number" id="cartQuantity" name="quantity" min="1" value="1">
-		
 		    <!-- 장바구니에 추가 버튼 -->
-		    <input type="submit" value="장바구니 추가">
+		    <input type="submit" formaction="/cart/add" value="장바구니 추가">
+		    <!-- 주문하기 버튼 -->
+		    <input type="submit" formaction="/live/order" value="주문하기">
 		</form>
 
     </div>
