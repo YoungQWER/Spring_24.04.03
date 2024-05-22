@@ -1,9 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<%@ include file="../includes/header.jsp" %>
+
 <html>
-<head>
-    <title>User Registration</title>
-</head>
 <body>
+    <title>User Registration</title>
     <h2>User Registration</h2>
     <form action="/user/register" method="post" modelAttribute="user">
         <div>
@@ -30,3 +33,5 @@
     </form>
 </body>
 </html>
+
+<%@ include file="../includes/footer.jsp" %>

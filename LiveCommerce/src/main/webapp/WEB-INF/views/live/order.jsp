@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+
+<%@ include file="../includes/header.jsp" %>
+
+<body>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
     <h2>주문 페이지</h2>
     <div>
         <!-- 기존 주문 정보 표시 -->
@@ -46,3 +46,5 @@
     </script>
 </body>
 </html>
+
+<%@ include file="../includes/footer.jsp" %>
