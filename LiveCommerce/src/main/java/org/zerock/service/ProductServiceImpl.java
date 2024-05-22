@@ -49,5 +49,9 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductVO> getProductsByCategory(int categoryId) {
         return productMapper.getProductsByCategory(categoryId);
     }
+    
+    public List<ProductVO> searchProductsByName(String productName) {
+        return productMapper.searchProductsByName(productName);
+    }
 
 }

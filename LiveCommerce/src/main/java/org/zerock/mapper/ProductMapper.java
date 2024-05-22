@@ -22,4 +22,7 @@ public interface ProductMapper {
     
     // categoryId로 해당 카테고리에 속하는 상품을 가져오는 메소드
     List<ProductVO> getProductsByCategory(int categoryId);
+    
+    // 제품 이름으로 검색하는 메서드 추가
+    List<ProductVO> searchProductsByName(String productName);
 }

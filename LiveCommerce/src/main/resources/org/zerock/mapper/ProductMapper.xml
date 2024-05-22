@@ -18,7 +18,7 @@
         SELECT * FROM Products
     </select>
     
-     <!-- categoryId로 해당 카테고리에 속하는 상품을 가져오는 쿼리 -->
+    <!-- categoryId로 해당 카테고리에 속하는 상품을 가져오는 쿼리 -->
     <select id="getProductsByCategory" resultType="org.zerock.domain.ProductVO" parameterType="int">
         SELECT * FROM Products WHERE CategoryID = #{categoryId}
     </select>
@@ -34,5 +34,10 @@
     <delete id="deleteProduct" parameterType="int">
         DELETE FROM Products WHERE ProductID = #{productID}
     </delete>
+    
+    <!-- 제품 이름으로 검색 -->
+    <select id="searchProductsByName" resultType="org.zerock.domain.ProductVO" parameterType="string">
+        SELECT * FROM Products WHERE ProductName LIKE CONCAT('%', #{productName}, '%')
+    </select>
     
 </mapper>

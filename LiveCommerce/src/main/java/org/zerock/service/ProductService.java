@@ -1,8 +1,6 @@
 package org.zerock.service;
 
 import java.util.List;
-
-import org.zerock.domain.LiveChatVO;
 import org.zerock.domain.ProductVO;
 
 public interface ProductService {
@@ -25,5 +23,6 @@ public interface ProductService {
     // categoryId로 해당 카테고리에 속하는 상품을 가져오는 메소드
     List<ProductVO> getProductsByCategory(int categoryId);
     
-    
+    // 제품명으로 제품을 검색하는 메소드
+    List<ProductVO> searchProductsByName(String productName);
 }

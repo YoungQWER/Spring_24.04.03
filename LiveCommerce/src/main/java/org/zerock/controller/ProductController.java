@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,5 +47,12 @@ public class ProductController {
 
         // 해당하는 JSP 페이지의 경로를 반환합니다.
         return "/live/shopping"; // shopping.jsp와 같은 JSP 페이지의 이름을 반환합니다.
+    }
+    
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("productName") String productName, Model model) {
+        List<ProductVO> products = productService.searchProductsByName(productName);
+        model.addAttribute("products", products);
+        return "/live/main"; // 검색 결과를 표시하는 뷰의 이름
     }
 }
