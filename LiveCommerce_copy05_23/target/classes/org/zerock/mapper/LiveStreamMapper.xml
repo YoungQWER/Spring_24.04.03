@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.LiveStreamMapper">
+
+    <resultMap id="LiveStreamResultMap" type="org.zerock.domain.LiveStreamVO">
+        <id property="streamID" column="StreamID"/>
+        <result property="title" column="Title"/>
+        <result property="url" column="URL"/>
+        <result property="description" column="Description"/>
+        <result property="startTime" column="StartTime"/>
+        <result property="endTime" column="EndTime"/>
+        <result property="photo" column="Photo"/>
+    </resultMap>
+
+    <select id="getLiveStream" parameterType="int" resultMap="LiveStreamResultMap">
+        SELECT * FROM LiveStreams WHERE streamID = #{streamID}
+    </select>
+
+	<insert id="insertLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
+	    INSERT INTO LiveStreams (Title, URL, Description, StartTime, EndTime, Photo, ChatID, ProductID)
+	    VALUES (#{title}, #{url}, #{description}, #{startTime}, #{endTime}, #{photo}, #{chatID}, #{productID})
+	</insert>
+
+	<update id="updateLiveStream" parameterType="org.zerock.domain.LiveStreamVO">
+	    UPDATE LiveStreams
+	    SET Title = #{title}, URL = #{url}, Description = #{description}, StartTime = #{startTime}, 
+	        EndTime = #{endTime}, Photo = #{photo}, ChatID = #{chatID}, ProductID = #{productID}
+	    WHERE StreamID = #{streamID}
+	</update>
+
+    <delete id="deleteLiveStream" parameterType="int">
+        DELETE FROM LiveStreams WHERE StreamID = #{streamID}
+    </delete>
+
+</mapper>

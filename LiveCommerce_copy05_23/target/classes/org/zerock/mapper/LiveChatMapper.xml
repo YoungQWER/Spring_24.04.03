@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.LiveChatMapper">
+
+    <resultMap id="liveChatResultMap" type="org.zerock.domain.LiveChatVO">
+        <id property="chatID" column="ChatID"/>
+        <result property="userID" column="UserID"/>
+        <result property="message" column="Message"/>
+        <result property="chatTime" column="ChatTime"/>
+    </resultMap>
+
+    <select id="getLiveChat" resultMap="liveChatResultMap">
+        SELECT * FROM LiveChat WHERE ChatID = #{chatID}
+    </select>
+    
+        <!-- 특정 상품에 대한 채팅 기록을 가져오는 SQL 구문 -->
+    <select id="getChatHistoryByProductID" resultType="org.zerock.domain.LiveChatVO">
+        SELECT * FROM LiveChat WHERE ProductID = #{productID}
+    </select>
+    
+
+    <select id="getAllLiveChats" resultMap="liveChatResultMap">
+        SELECT * FROM LiveChat
+    </select>
+    
+    <select id="getChatHistoryByUserID" resultType="org.zerock.domain.LiveChatVO" parameterType="int">
+    SELECT ChatID, UserID, Message, ChatTime
+    FROM LiveChat
+    WHERE UserID = #{userID}
+</select>
+
+    <insert id="insertLiveChat" parameterType="org.zerock.domain.LiveChatVO">
+        INSERT INTO LiveChat (UserID, Message, ChatTime)
+        VALUES (#{userID}, #{message}, #{chatTime})
+    </insert>
+    
+      <insert id="saveMessage" parameterType="org.zerock.domain.LiveChatVO">
+        INSERT INTO LiveChat (UserID, Message) VALUES (#{userID}, #{message})
+    </insert>
+
+    <update id="updateLiveChat" parameterType="org.zerock.domain.LiveChatVO">
+        UPDATE LiveChat
+        SET UserID = #{userID}, Message = #{message}, ChatTime = #{chatTime}
+        WHERE ChatID = #{chatID}
+    </update>
+
+    <delete id="deleteLiveChat">
+        DELETE FROM LiveChat WHERE ChatID = #{chatID}
+    </delete>
+    
+     <select id="getChatRecords" resultType="org.zerock.domain.LiveChatVO">
+        SELECT LiveChat.ChatID, Users.Username, LiveChat.Message, LiveChat.ChatTime
+        FROM LiveChat
+        JOIN Users ON LiveChat.UserID = Users.UserID
+    </select>
+    
+        <select id="getUsernameByUserId" resultType="string">
+        SELECT Username
+        FROM Users
+        WHERE UserID = #{userID}
+    </select>
+
+</mapper>
