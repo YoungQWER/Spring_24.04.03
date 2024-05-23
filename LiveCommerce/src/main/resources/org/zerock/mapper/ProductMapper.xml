@@ -40,4 +40,11 @@
         SELECT * FROM Products WHERE ProductName LIKE CONCAT('%', #{productName}, '%')
     </select>
     
+    <!-- productId로 categoryId를 조회하는 쿼리 -->
+    <select id="findCategoryIdByProductId" parameterType="int" resultType="int">
+        SELECT categoryId
+        FROM Products
+        WHERE productId = #{productId}
+    </select>
+    
 </mapper>

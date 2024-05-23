@@ -25,4 +25,6 @@ public interface ProductMapper {
     
     // 제품 이름으로 검색하는 메서드 추가
     List<ProductVO> searchProductsByName(String productName);
+
+	Integer findCategoryIdByProductId(int productId);
 }

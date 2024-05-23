@@ -25,4 +25,6 @@ public interface ProductService {
     
     // 제품명으로 제품을 검색하는 메소드
     List<ProductVO> searchProductsByName(String productName);
+
+    Integer getCategoryIdByProductId(int productId);
 }

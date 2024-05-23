@@ -53,5 +53,9 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductVO> searchProductsByName(String productName) {
         return productMapper.searchProductsByName(productName);
     }
+    @Override
+    public Integer getCategoryIdByProductId(int productId) {
+        return productMapper.findCategoryIdByProductId(productId);
+    }
 
 }

@@ -110,9 +110,9 @@ input[type="checkbox"] {
             </c:forEach>
         </tbody>
     </table>
-
     <!-- 선택된 상품 결제하기 버튼 -->
     <button id="requestPaymentBtn" type="button">선택된 상품 결제하기</button>
+
 
     <%-- 선택된 상품 정보를 전송하기 위한 hidden 필드들 --%>
     <form id="cartForm" action="/live/checkout" method="post">
