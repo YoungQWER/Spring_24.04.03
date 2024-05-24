@@ -6,9 +6,6 @@
 <html>
 <head>
     <title>홈 페이지</title>
-    <script type="text/javascript">
-        window.location.href = "/live/main";
-    </script>
 </head>
 <body>
     <!-- 이 내용은 리다이렉션 이후에는 표시되지 않습니다. -->
