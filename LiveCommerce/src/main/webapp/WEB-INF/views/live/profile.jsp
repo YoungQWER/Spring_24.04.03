@@ -2,8 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>프로필</title>
+
+<%@ include file="../includes/header.jsp" %>
+
+<body>    
+	<title>프로필</title>
     <!-- 부트스트랩 링크 추가 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- 아이콘 라이브러리 추가 -->
@@ -12,7 +15,7 @@
         body {
             background-color: #f4f7f6;
             font-family: 'Arial', sans-serif;
-        }
+        }	
         .container {
             margin-top: 50px;
             max-width: 600px;
@@ -54,10 +57,6 @@
             font-weight: bold;
         }
     </style>
-</head>
-<body>
-
-<%@ include file="../includes/header.jsp" %>
 
 <div class="container">
     <div class="card text-center">

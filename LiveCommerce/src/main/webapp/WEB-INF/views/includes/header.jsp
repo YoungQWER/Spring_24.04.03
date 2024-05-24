@@ -7,7 +7,7 @@
     <style>
         /* 기존 스타일 */
         .logo-link {
-            color: #fff; /* 링크 색상 */
+            color: black; /* 링크 색상 */
             text-decoration: none; /* 밑줄 제거 */
         }
         
@@ -17,10 +17,11 @@
             padding: 0;
         }
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: white;
+            color: black; /* 헤더 글씨 색상 */
             padding: 20px;
             text-align: center;
+            border-bottom: 1px solid #ddd;
         }
         nav ul {
             list-style-type: none;
@@ -34,7 +35,7 @@
             vertical-align: top; /* 세로 정렬 상단으로 */
         }
         nav ul li a {
-            color: #fff;
+            color: black; /* 링크 색상 */
             text-decoration: none;
             font-size: 14px; /* 글씨 크기를 14px로 줄임 */
             display: block; /* 블록 요소로 변경 */
@@ -96,14 +97,22 @@
             display: block; /* 블록 요소로 변경 */
             margin: 0 auto 5px; /* 아래쪽 마진 추가 */
         }
+        .menu-item {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+    		margin-top: 10px; /* 프로필과 장바구니 사이의 간격 조절 */
+		}
+		
+        
     </style>
 </head>
 <body>
 <header>
-    <h1><a href="/live/main" class="logo-link">라이브 커머스</a></h1>
+    <h1><a href="/live/main" class="logo-link" style="font-size: 24px;">라이브 커머스</a></h1>
     <nav class="main-nav">
         <ul>
-            <%-- 카테고리 목록 표시 --%>
+            <!-- 카테고리 목록 표시 -->
             <c:forEach items="${categories}" var="category" varStatus="status">
                 <li>
                     <a href="/live/category?categoryId=${category.categoryID}">
@@ -118,8 +127,22 @@
         <ul>
             <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
             <% if (request.isUserInRole("ROLE_USER")) { %>
-                <li><a href="/live/profile">내 프로필</a></li>
-                <li><a href="/cart/list">장바구니</a></li>
+                <li>
+                    <a href="/live/profile">
+                        <div class="menu-item">
+                            <img src="<c:url value='/resources/images/icons/profile.png' />" alt="프로필 아이콘">
+                            <span>프로필</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cart/list">
+                        <div class="menu-item">
+                            <img src="<c:url value='/resources/images/icons/cart.png' />" alt="장바구니 아이콘">
+                            <span>장바구니</span>
+                        </div>
+                    </a>
+                </li>
                 <form action="/customLogout" method="post">
                     <button type="submit">로그아웃</button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -137,3 +160,5 @@
         </ul>
     </nav>
 </header>
+</body>
+</html>
