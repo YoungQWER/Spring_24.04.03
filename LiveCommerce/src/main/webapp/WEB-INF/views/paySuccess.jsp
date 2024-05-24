@@ -13,9 +13,12 @@
     <p>결제가 성공적으로 완료되었습니다. 감사합니다!</p>
     <p>결제 상세 정보:</p>
     <ul>
-        <li>상점 거래ID: ${merchant_uid}</li>
-        <li>결제 금액: ${paid_amount}원</li>
-        <li>카드 승인번호: ${apply_num}</li>
+        <li>주문자 이름: ${Name}</li>
+        <li>주문자 이메일: ${Email}</li>
+        <li>주문된 상품: ${productName}</li>
+        <li>결제 금액: ${amount}원</li>
+        <li>지역번호: ${ShippingPostalCode}</li>
+        <li>주문자 주소: ${ShippingAddress}</li>
     </ul>
 </body>
 </html>

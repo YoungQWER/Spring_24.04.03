@@ -60,9 +60,9 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("currentUsername", currentUsername);
-        model.addAttribute("caregoryproducts", products);
+        model.addAttribute("categoryproducts", products);
         
-        log.info("caregoryproducts : " + products);
+        log.info("categoryproducts : " + products);
 
         // 채팅 기록을 가져와 모델에 추가
         model.addAttribute("chatHistory", liveChatService.getChatHistoryByProductID(productId));
@@ -70,7 +70,6 @@ public class ProductController {
         // 해당하는 JSP 페이지의 경로를 반환합니다.
         return "/live/shopping"; // shopping.jsp와 같은 JSP 페이지의 이름을 반환합니다.
     }
-
 
     @GetMapping("/search")
     public String searchProducts(@RequestParam("productName") String productName, Model model) {

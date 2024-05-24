@@ -257,7 +257,7 @@
         <!-- 상품 목록 -->
         <h3>관련 상품 목록</h3>
        <div class="product-list">
-    <c:forEach items="${caregoryproducts}" var="relatedProduct">
+    <c:forEach items="${categoryproducts}" var="relatedProduct">
         <div class="product-item">
             <img src="${relatedProduct.photo}" alt="${relatedProduct.productName}">
             <div>

@@ -166,6 +166,8 @@ public class PaymentController {
     
     @GetMapping("/paySuccess")
     public String showPaymentSuccessPage(Model model) {
+    	
+    	  
         // 결제 성공 시 필요한 데이터를 모델에 추가
         model.addAttribute("merchant_uid", "결제 거래 ID");
         model.addAttribute("paid_amount", "결제 금액");
