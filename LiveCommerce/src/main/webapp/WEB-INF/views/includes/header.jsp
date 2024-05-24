@@ -5,11 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <style>
-    	.logo-link {
-		    color: #fff; /* 링크 색상 */
-		    text-decoration: none; /* 밑줄 제거 */
-		}
-    	
+        /* 기존 스타일 */
+        .logo-link {
+            color: #fff; /* 링크 색상 */
+            text-decoration: none; /* 밑줄 제거 */
+        }
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -28,12 +29,16 @@
             text-align: center;
         }
         nav ul li {
-            display: inline;
+            display: inline-block; /* 인라인 블록으로 변경 */
             margin-right: 20px;
+            vertical-align: top; /* 세로 정렬 상단으로 */
         }
         nav ul li a {
             color: #fff;
             text-decoration: none;
+            font-size: 14px; /* 글씨 크기를 14px로 줄임 */
+            display: block; /* 블록 요소로 변경 */
+            text-align: center; /* 텍스트 가운데 정렬 */
         }
         main {
             padding: 20px;
@@ -85,6 +90,12 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
+        .category-icon {
+            width: 32px; /* 아이콘 크기 */
+            height: 32px;
+            display: block; /* 블록 요소로 변경 */
+            margin: 0 auto 5px; /* 아래쪽 마진 추가 */
+        }
     </style>
 </head>
 <body>
@@ -93,8 +104,13 @@
     <nav class="main-nav">
         <ul>
             <%-- 카테고리 목록 표시 --%>
-            <c:forEach items="${categories}" var="category">
-                <li><a href="/live/category?categoryId=${category.categoryID}">${category.categoryName}</a></li>
+            <c:forEach items="${categories}" var="category" varStatus="status">
+                <li>
+                    <a href="/live/category?categoryId=${category.categoryID}">
+                        <img src="<c:url value='/resources/images/icons/${status.index + 1}.png' />" alt="${category.categoryName}" class="category-icon">
+                        ${category.categoryName}
+                    </a>
+                </li>
             </c:forEach>
         </ul>
     </nav>
