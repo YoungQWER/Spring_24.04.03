@@ -52,7 +52,7 @@ public class OrderController {
                              @RequestParam("quantity") int quantity,
                              Model model) {
 
-       // 상품 정보 조회
+        // 상품 정보 조회
         ProductVO product = productService.getProduct(productId);
         
         // 현재 로그인한 사용자의 정보 가져오기
