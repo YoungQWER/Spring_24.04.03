@@ -23,7 +23,6 @@
 		    <!-- 기존 주문 정보 표시 -->
 		    <h3>상품 정보</h3>
 		    <p>상품명: ${product.productName}</p>
-		    <p>가격: ${product.price}원</p>
 		    <p>설명: ${product.description}</p>
 		    <p>수량: ${quantity}</p>
 		    <p>총 가격: <span id="totalPrice">${product.price * quantity} 원</span></p>

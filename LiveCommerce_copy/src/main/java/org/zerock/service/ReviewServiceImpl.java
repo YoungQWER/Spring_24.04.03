@@ -31,7 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewMapper.getAllReviews();
     }
 
-    @Override public void insertReview(ReviewVO review) {
+    @Override 
+    public void insertReview(ReviewVO review) {
         reviewMapper.insertReview(review);
         // 여기서 다른 비즈니스 로직 처리 가능
     }

@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -113,5 +114,10 @@ public class CartController {
 
         // 장바구니 페이지로 리다이렉트
         return "redirect:/cart/list";
+    }
+    @PostMapping("/remove")
+    public String removeProductFromCart(@RequestParam("cartID") int cartID) {
+        cartService.deleteCart(cartID);
+        return "redirect:/cart/list"; // 장바구니 페이지로 리디렉션
     }
 }

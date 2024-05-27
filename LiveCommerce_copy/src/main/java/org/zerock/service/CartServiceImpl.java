@@ -53,4 +53,8 @@ public class CartServiceImpl implements CartService {
     public List<CartProductVO> getCartDetails(int userID) {
         return cartMapper.selectCartDetails(userID);
     }
+    @Override
+    public void removeProductFromCart(CartProductVO cartProduct) {
+        cartMapper.deleteProductFromCart(cartProduct);
+    }
 }

@@ -1,9 +1,6 @@
 package org.zerock.mapper;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.zerock.domain.Criteria;
 import org.zerock.domain.ProductVO;
 
 public interface ProductMapper {
@@ -26,7 +23,8 @@ public interface ProductMapper {
     // categoryId로 해당 카테고리에 속하는 상품을 가져오는 메소드
     List<ProductVO> getProductsByCategory(int categoryId);
     
-    List<ProductVO> getListWithPaging(@Param("cri") Criteria cri);
+    // 제품 이름으로 검색하는 메서드 추가
+    List<ProductVO> searchProductsByName(String productName);
 
-    int getTotalCount(@Param("cri") Criteria cri);
+	Integer findCategoryIdByProductId(int productId);
 }

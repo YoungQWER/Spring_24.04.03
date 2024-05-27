@@ -20,4 +20,6 @@ public interface CartService {
     List<CartVO> getCartByUserID(int userID);
 
     List<CartProductVO> getCartDetails(int userID);
+
+    void removeProductFromCart(CartProductVO cartProduct);
 }

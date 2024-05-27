@@ -35,48 +35,16 @@
         DELETE FROM Products WHERE ProductID = #{productID}
     </delete>
     
-    <!-- 검색 조건을 설정하는 SQL 구문 -->
-	<sql id="criterial">
-	    <trim prefix="(" suffix=") and" prefixOverrides="AND |OR ">
-	        <if test="cri.productName != null and cri.productName.trim() != ''">
-	            productName like '%' || #{cri.productName} || '%'
-	        </if>
-	        <if test="cri.keyword != null and cri.keyword.trim() != ''">
-	            (description like '%' || #{cri.keyword} || '%'
-	            or productName like '%' || #{cri.keyword} || '%')
-	        </if>
-	    </trim>
-	</sql>
-  
-	<!-- 페이징 처리가 된 상품 목록을 가져오는 SQL 구문 -->
-<select id="getListWithPaging" resultType="org.zerock.domain.ProductVO">
-    <![CDATA[
-    SELECT *
-    FROM (
-        SELECT rownum AS rnum, p.productId, p.productName, p.description, p.price, p.photo
-        FROM Products p
-        <where>
-            <if test="cri.productName != null and cri.productName != ''">
-                AND productName like CONCAT('%', #{cri.productName}, '%')
-            </if>
-        </where>
-        ORDER BY ProductID
-    ) temp
-    WHERE rnum BETWEEN #{cri.startRow} AND #{cri.endRow}
-    ]]>
-</select>
-
-
-
-
-
-
-    <!-- 총 상품 수를 가져오는 SQL 구문 -->
-    <select id="getTotalCount" resultType="int">
-        select count(*) from Products 
-        where
-        <include refid="criterial"></include>
-        productId > 0
+    <!-- 제품 이름으로 검색 -->
+    <select id="searchProductsByName" resultType="org.zerock.domain.ProductVO" parameterType="string">
+        SELECT * FROM Products WHERE ProductName LIKE CONCAT('%', #{productName}, '%')
+    </select>
+    
+    <!-- productId로 categoryId를 조회하는 쿼리 -->
+    <select id="findCategoryIdByProductId" parameterType="int" resultType="int">
+        SELECT categoryId
+        FROM Products
+        WHERE productId = #{productId}
     </select>
     
 </mapper>

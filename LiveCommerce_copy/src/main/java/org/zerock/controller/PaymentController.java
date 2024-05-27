@@ -1,6 +1,10 @@
 package org.zerock.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+import org.zerock.domain.CartProductVO;
+import org.zerock.domain.ProductVO;
 import org.zerock.domain.UserVO;
 import org.zerock.service.UserService;
 
@@ -42,8 +50,49 @@ public class PaymentController {
 
         return "/kakaoPay";
     }
-    
-    
+    @PostMapping("/checkout")
+    public String checkout(@RequestParam("selectedProducts") String selectedProducts, 
+                           @RequestParam("selectedAmount") String selectedAmount, 
+                           Model model) {
+        log.info("Selected Products: " + selectedProducts);
+        log.info("selectedAmount: " + selectedAmount);
+
+        // 선택된 상품의 총 가격을 부동 소수점 숫자로 파싱
+        double totalPrice = Double.parseDouble(selectedAmount);
+        
+        // 현재 로그인한 사용자의 정보 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        
+        // 사용자 이름으로 사용자 정보 가져오기
+        UserVO user = userService.selectUserByUserName(username);
+
+        
+        // 사용자의 이메일과 이름 주소 지역번호 가져오기
+        String buyer_Email = user.getEmail();
+        String buyer_Name = user.getUsername();
+        String buyer_ShippingAddress = user.getShippingAddress();
+        String buyer_ShippingPostalCode = user.getShippingPostalCode();
+
+        log.info("구매자 이름: " + buyer_Name);
+        log.info("구매자 이메일: " + buyer_Email);
+        log.info("productName: " + selectedProducts);
+        log.info("amount: " + selectedAmount);
+        log.info("지역번호  " + buyer_ShippingPostalCode);
+        log.info("구매자 주소 " + buyer_ShippingAddress);
+         
+         // productName과 amount 값을 모델에 추가하여 kakaoPay.jsp로 전달
+         model.addAttribute("productName", selectedProducts);
+         model.addAttribute("amount", selectedAmount);
+         model.addAttribute("ShippingPostalCode" , buyer_ShippingPostalCode);
+         model.addAttribute("ShippingAddress" , buyer_ShippingAddress);
+         model.addAttribute("Name",buyer_Name);
+         model.addAttribute("Email",buyer_Email);
+        
+        return "/kakaoPay";
+    }
+        
+   
     @PostMapping("/kakaoPay")
     public String processKakaoPay(HttpServletRequest request, Model model) {
        
@@ -81,14 +130,7 @@ public class PaymentController {
         
         return "/kakaoPay";
     }
-    
-    @GetMapping("/paySuccess")
-    public String paymentSuccess() {
-    	// 결제 성공 시 처리할 로직을 구현합니다.
-    	return "/live/paySuccess"; // 결제 성공 페이지로 이동
-    }
-    
-    @PostMapping("/paySuccess")
+    @PostMapping("/complete")
     public ResponseEntity<String> completePayment(@RequestBody String impUid) {
         // 아임포트나 PG사의 API를 사용하여 impUid를 이용해 결제 정보 조회 및 처리하는 로직을 작성
         // 예를 들어, 아임포트 API를 사용하여 결제 정보를 조회하고 처리하는 로직을 구현
@@ -101,10 +143,44 @@ public class PaymentController {
             return ResponseEntity.badRequest().body("Payment processing failed.");
         }
     }
+    // 아임포트 API를 통해 결제 정보를 조회하는 메서드
+    private boolean callImpApiToCheckPayment(String impUid) {
+        // 아임포트 API를 호출하여 결제 정보를 조회하는 URL
+        String apiUrl = "https://api.iamport.kr/payments/" + impUid;
+
+        // 아임포트 API 토큰 발급을 위한 URL
+        String tokenUrl = "https://api.iamport.kr/users/getToken";
+
+        // 아임포트 API 토큰 발급 요청
+        RestTemplate restTemplate = new RestTemplate();
+        String tokenResponse = restTemplate.postForObject(tokenUrl, null, String.class);
+
+        // 아임포트 API를 호출하여 결제 정보 조회
+        String paymentResponse = restTemplate.getForObject(apiUrl + "?_token=" + tokenResponse, String.class);
+
+        // 결제 정보 확인 후 처리
+        // 여기서는 간단히 성공 여부만 반환하도록 예시를 작성했습니다.
+        // 실제로는 API 응답을 파싱하여 결제 정보를 확인하고 적절히 처리해야 합니다.
+        return paymentResponse.contains("\"status\":\"paid\"");
+    }
     
+    @GetMapping("/paySuccess")
+    public String showPaymentSuccessPage(Model model) {
+    	
+    	  
+        // 결제 성공 시 필요한 데이터를 모델에 추가
+        model.addAttribute("merchant_uid", "결제 거래 ID");
+        model.addAttribute("paid_amount", "결제 금액");
+        model.addAttribute("apply_num", "카드 승인번호");
+
+        return "paySuccess"; // paySuccess.jsp를 렌더링
+    }
+
     @GetMapping("/payFail")
-    public String paymentFail() {
-        // 결제 실패 시 처리할 로직을 구현합니다.
-        return "/live/payFail"; // 결제 실패 페이지로 이동
+    public String showPaymentFailurePage(Model model) {
+        // 결제 실패 시 필요한 데이터를 모델에 추가
+        model.addAttribute("error_msg", "실패 메시지");
+
+        return "payFail"; // payFail.jsp를 렌더링
     }
 }

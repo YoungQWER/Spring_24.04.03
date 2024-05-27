@@ -2,24 +2,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
-<html>
-
 <%@ include file="../includes/header.jsp" %>
 
-<body>
+<html>
+<head>
     <meta charset="UTF-8">
     <title>제품 상세 정보</title>
     <!-- 여기에 필요한 CSS 및 JavaScript 파일을 추가하세요 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <style>
-    
         /* 전체 페이지 스타일 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
         }
 
         /* 메인 콘텐츠 스타일 */
@@ -139,20 +145,6 @@
         max-width: 100%;
         height: auto;
     }
-    /* 주문하기 및 장바구니 추가 버튼 스타일 */
-    input[type="submit"] {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #0056b3;
-    }
 
     </style>
 
@@ -223,6 +215,11 @@
             messageArea.scrollTop = messageArea.scrollHeight;
         };
     </script>
+</head>
+<body>
+<header>
+    <!-- 웹사이트 헤더 정보를 여기에 추가하세요 -->
+</header>
 
 <main>
     <!-- 제품 상세 정보를 표시하는 코드를 여기에 추가하세요 -->
@@ -231,16 +228,16 @@
         <p>제품 설명: ${product.description}</p>
         <p>가격: ${product.price}</p>
         <img src="${product.photo}" alt="${product.productName}" width="300">
-<%-- 
-        <!-- 현재 로그인한 사용자 정보 출력 -->
+
+<%--         <!-- 현재 로그인한 사용자 정보 출력 -->
         <h3>현재 로그인한 사용자 정보</h3>
         <p>사용자 ID: ${currentUser}</p>
         <p>사용자 이름: ${currentUsername}</p>
-        <p>제품번호 : ${product.productId}</p>
+        <p>제품번호 : ${product.productId}</p> --%>
 
         <!-- 총 가격 표시 -->
         <p>총 가격: <span id="totalPrice">${product.price}원</span></p>
- --%>
+
         <form method="post">
             <!-- 상품 정보를 hidden input으로 전달 -->
             <input type="hidden" name="productId" value="${product.productId}">

@@ -7,78 +7,76 @@
     <meta charset="UTF-8">
     <title>장바구니</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5); /* 체크박스 크기 조정 */
+            margin-right: 5px;
+        }
+
+        #requestPaymentBtn {
+            margin-top: 20px;
+            float: right; /* 우측 정렬 */
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d; /* 빨간색 배경색 */
+        }
+
+        .delete-btn:hover {
+            background-color: #ff6666; /* 밝은 빨간색 배경색 */
+        }
+    </style>
 </head>
 <body>
     <h2>장바구니</h2>
-    
-    <style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-th {
-    background-color: #333;
-    color: #fff;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
-
-button {
-    padding: 5px 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-input[type="checkbox"] {
-    transform: scale(1.5); /* 체크박스 크기 조정 */
-    margin-right: 5px;
-}
-
-#requestPaymentBtn {
-    margin-top: 20px;
-    float: right; /* 우측 정렬 */
-}
-
-.delete-btn {
-    background-color: #ff4d4d; /* 빨간색 배경색 */
-}
-
-.delete-btn:hover {
-    background-color: #ff6666; /* 밝은 빨간색 배경색 */
-}
-    </style>
-
     <table border="1">
         <thead>
             <tr>
@@ -112,7 +110,6 @@ input[type="checkbox"] {
     </table>
     <!-- 선택된 상품 결제하기 버튼 -->
     <button id="requestPaymentBtn" type="button">선택된 상품 결제하기</button>
-
 
     <%-- 선택된 상품 정보를 전송하기 위한 hidden 필드들 --%>
     <form id="cartForm" action="/live/checkout" method="post">
@@ -160,12 +157,9 @@ input[type="checkbox"] {
             });
         });
     });
-</script>
-
+    </script>
 
 </body>
 </html>
-
-
 
 <%@ include file="../includes/footer.jsp" %>

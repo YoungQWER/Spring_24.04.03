@@ -6,166 +6,130 @@
 <%@page import="org.zerock.domain.LiveStreamVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>라이브 커머스</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        main {
-            padding: 20px;
-        }
-        .hero {
-            background-color: #f4f4f4;
-            padding: 50px;
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #555;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        /* 추가된 스타일 */
-        .video-container {
-            position: relative;
-            width: 228px; /* 가로 크기 조정 */
-            height: 342px; /* 세로 크기 조정 */
-            margin: auto;
-            margin-bottom: 20px;
-        }
-        .video-container video {
-            width: 100%;
-            height: 100%;
-        }
-        .product-id {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-<header>
-<h1>라이브 커머스</h1>
-<nav class="main-nav">
-    <ul>
-        <%-- 카테고리 목록 표시 --%>
-        <c:forEach items="${categories}" var="category">
-            <li><a href="/live/category?categoryId=${category.categoryID}">${category.categoryName}</a></li>
-        </c:forEach>
-    </ul>
-</nav>
-     <nav class="user-nav">
-        <ul>
-            <!-- 사용자 및 관리자에 따라 다른 메뉴 표시 -->
-            <% if (request.isUserInRole("ROLE_USER")) { %>
-                <li><a href="/live/profile">내 프로필</a></li>
-                <li><a href="/cart/list">장바구니</a></li>
-                <form action="/customLogout" method="post">
-                    <button type="submit">로그아웃</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-            <% } else if (request.isUserInRole("ROLE_ADMIN")) { %>
-                <li><a href="/admin/dashboard">관리자 대시보드</a></li>
-                <form action="/user/logout" method="post">
-                    <button type="submit">로그아웃</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-            <% } else { %>
-                <li><a href="/customLogin">로그인</a></li>
-                <li><a href="/user/register">회원가입</a></li>
-            <% } %>
-        </ul>
-    </nav>
-</header>
+<%@ include file="../includes/header.jsp" %>
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+    }
 
+    main {
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+
+    input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: calc(20% - 20px);
+        box-sizing: border-box;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .product-card-content {
+        padding: 15px;
+    }
+
+    .product-card h2 {
+        font-size: 18px;
+        margin: 0 0 10px;
+        color: #333;
+    }
+
+    .product-card p {
+        margin: 0 0 10px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .product-card .price {
+        font-size: 16px;
+        color: #e91e63;
+        font-weight: bold;
+    }
+
+    .product-card .view-details {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .product-card .view-details:hover {
+        background-color: #45a049;
+    }
+</style>
 
 <main>
     <h1>Products</h1>
-    <form action="/live/main" method="get">
-        <input type="text" name="productName" value="${criteria.productName}" placeholder="검색할 상품명을 입력하세요">
-        <button type="submit">검색</button>
+    <form action="/live/search" method="get">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName">
+        <button type="submit">Search</button>
     </form>
-    <table border="1">
-        <tr>
-            <th>Product Id</th>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Photo</th>
-        </tr>
+    <div class="product-grid">
         <c:forEach items="${products}" var="product">
-            <tr>
-                <td>${product.productId}</td>
-                <td>${product.productName}</td>
-                <td>${product.description}</td>
-                <td>${product.price}</td>
-                <td><img src="${product.photo}" alt="${product.productName}" width="100"></td>
-                <td><a href="/live/product?id=${product.productId}">View Details</a></td>
-            </tr>
+            <div class="product-card">
+                <img src="${product.photo}" alt="${product.productName}">
+                <div class="product-card-content">
+                    <h2>${product.productName}</h2>
+                    <p>${product.description}</p>
+                    <div class="price">${product.price}</div>
+                    <a href="/live/product?id=${product.productId}" class="view-details">View Details</a>
+                </div>
+            </div>
         </c:forEach>
-    </table>
-
-    <%-- 페이징 처리 --%>
-    <c:if test="${criteria.pageNum > 1}">
-        <a href="/live/main?pageNum=${criteria.pageNum - 1}&productName=${criteria.productName}">이전</a>
-    </c:if>
-    <c:if test="${not empty products}">
-        <a href="/live/main?pageNum=${criteria.pageNum + 1}&productName=${criteria.productName}">다음</a>
-    </c:if>
+    </div>
 </main>
 
-
-
-
-<footer>
-    <p>&copy; 2024 Live Commerce. All rights reserved.</p>
-</footer>
-</body>
-</html>
+<%@ include file="../includes/footer.jsp" %>

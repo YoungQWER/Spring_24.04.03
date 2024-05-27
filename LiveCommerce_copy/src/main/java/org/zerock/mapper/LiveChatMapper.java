@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import java.util.List;
 import org.zerock.domain.LiveChatVO;
+import org.zerock.domain.UserLiveChatVO;
 
 public interface LiveChatMapper {
 
@@ -19,4 +20,15 @@ public interface LiveChatMapper {
 
     // 라이브 채팅 정보 삭제
     void deleteLiveChat(int chatID);
+    
+    
+    List<UserLiveChatVO> getChatRecords();
+    
+    String getUsernameByUserId(int userID);
+
+	List<LiveChatVO> getChatHistoryByUserID(int userID);
+
+	void saveMessage(LiveChatVO chatVO);
+    // 특정 상품에 대한 채팅 기록을 가져오는 메서드
+    List<LiveChatVO> getChatHistoryByProductID(int productID);
 }

@@ -1,8 +1,6 @@
 package org.zerock.service;
 
 import java.util.List;
-
-import org.zerock.domain.Criteria;
 import org.zerock.domain.ProductVO;
 
 public interface ProductService {
@@ -25,10 +23,8 @@ public interface ProductService {
     // categoryId로 해당 카테고리에 속하는 상품을 가져오는 메소드
     List<ProductVO> getProductsByCategory(int categoryId);
     
-    // 페이징 처리된 상품 목록을 가져오는 메서드
-    List<ProductVO> getProductsPaging(Criteria cri); // 이름 변경
+    // 제품명으로 제품을 검색하는 메소드
+    List<ProductVO> searchProductsByName(String productName);
 
-    // 페이징 처리를 위한 총 상품 수를 가져오는 메서드
-    int getTotal(Criteria cri);
-
+    Integer getCategoryIdByProductId(int productId);
 }

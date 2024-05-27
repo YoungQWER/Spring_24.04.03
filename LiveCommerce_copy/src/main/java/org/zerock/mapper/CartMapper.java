@@ -22,4 +22,6 @@ public interface CartMapper {
     List<CartVO> getCartByUserID(int userID);
     
     List<CartProductVO> selectCartDetails(@Param("userID") int userID);
+    
+    void deleteProductFromCart(CartProductVO cartProduct);
 }
